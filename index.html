@@ -19,12 +19,19 @@
 var tl = []; //timeline initialized empty
 
 /////////////////////////////////////////////////////
-/* define the welcome information */
+/* define the welcome & consent information */
 var welcome = {
   type: "html-keyboard-response",
-  stimulus: "Welcome to our experiment! Press any key to begin."
+  stimulus: "Welcome to our experiment! Please turn off any music or television, and put your phone on silent" +
+  "<p>Press any key to begin.</p>"
 };
 tl.push(welcome);
+
+var consent = {
+  type: "html-keyboard-response",
+  stimulus: "Info here"
+};
+tl.push(consent);
 
 var instComp = {
   type: "html-keyboard-response",
@@ -50,13 +57,22 @@ var compSize = {
 tl.push(compSize);
 
 /////////////////////////////////////////////////////
-/* define the stimuli */
+/* define the SCENARIOS */
 var test_stimuli = [
   { stimulus: "jsPsych/examples/img/Fidel Castro.png",  correct_response: 'f'},
   { stimulus: "jsPsych/examples/img/Larry Nassar.png",  correct_response: 'j'},
   { stimulus: "jsPsych/examples/img/Vladimir Putin.png",  correct_response: 'j'}
 ];
 
+/* define the OPTIONS */
+var test_stimuli = [
+  { stimulus: "jsPsych/examples/img/Fidel Castro.png",  correct_response: 'f'},
+  { stimulus: "jsPsych/examples/img/Larry Nassar.png",  correct_response: 'j'},
+  { stimulus: "jsPsych/examples/img/Vladimir Putin.png",  correct_response: 'j'}
+];
+
+
+/////////////////////////////////////////////////////
 /* define the trials */
 
 var instructions = {
@@ -64,7 +80,7 @@ var instructions = {
   stimulus: "<p>You will now begin the experiment.</p>" + 
       "We are interested in how people make decisions about different kinds of events." + 
       "<p>You will be asked to read a number of stories and then make simple decisions about the stories.</p>" +
-      "<p>Please try to read carefully.</p>" +
+      "<p>You will be asked to make these decisions very quickly.</p>" +
       "<p style='position:fixed;bottom:0;width:50%;text-align:bottom'>Press any key to begin.</p>",
   post_trial_gap: 2000
 };
@@ -79,14 +95,32 @@ var fixation = {
 //  data: {test_part: 'fixation'}
 }
 
-var task_instructions = {
+var gen_instructions = {
   type: "html-keyboard-response",
   stimulus: "You will now begin the experiment.</p>" + 
-      "<p>When you see someone who's first name begins with an F, please press the F key.</p>" + 
-      "<p> When you see someone who's first name does not begin with an F, please press the J key.</p>" + 
+      "<p>We'd like you to tell us whether it is true or false that something ought to be done.</p>" +
+      "<p>To indicate that it is true that something ought to be done, please press the [f] key; to indicate that it is false that something ought to be done, please press the [j] key.</p>" +
+      "<p> To get you used to the task, you will first go through a warm-up phase.</p>" + 
+      "<p>On these trials, press [f] if you see the word <b>true</b> and [j] if you see the word <b>false</b>.</p>" +
+      "<p><b>***You will have to respond very quickly, so please pay attention!***</b></p>" + 
       "<p>Press any key to begin.</p>",
   post_trial_gap: 1000
 };
+
+var task_instructions = {
+  type: "html-keyboard-response",
+  stimulus: "Great! In this part, you will read a story and then will be judging whether it is true or false that certain things ought to be done."+
+  "<p>***Please answer as quickly and accurately as you possibly can. You will only have about 1 second to respond to each event.***</p>"};
+
+var read_instructions = {
+  type: "html-keyboard-response",
+  stimulus: "Please read the following story"};
+
+var scen_instructions = {
+  type: "html-keyboard-response",
+  stimulus: "Given the story you just read, please tell us whether it is true or false that Heinz ought to do the following things." +
+  "<p> Press the SPACE BAR when you are ready to begin.</p>" +
+  "<p>*** Remember, this will go very quickly!***</p>"};
 
 var test = {
   type: "image-keyboard-response",
@@ -100,7 +134,7 @@ var test = {
 
 /////////////////////////////////////////////////////
 /* define survey information */
-// i think NFC
+// havent added any individual diff measures yet
 
 var DSR1q = ["Strongly disagree", "Mildly disagree", "Neither agree nor disagree", "Mildly agree", "Strongly agree"];
 var Genderq = ["Male", "Female", "Non-binary", "Other"];
