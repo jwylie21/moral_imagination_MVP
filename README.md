@@ -1,2 +1,4 @@
 # moral_imagination_MVP
-moral imagination pilot study
+Moral imagination pilot study
+
+This pilot study is based off of Phillips & Cushman, 2017 _PNAS_
