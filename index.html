@@ -5,37 +5,51 @@
     <script src="jsPsych/jspsych.js"></script>
     <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-fullscreen.js"></script>
+    <script src="jsPsych/plugins/jspsych-instructions.js"></script>
     <script src="jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
     <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css">
   </head>
   <body></body>
   <script>
 
+///////////////////////////////////////////////////////
 /* create timeline */
 
 var tl = []; //timeline initialized empty
 
+/////////////////////////////////////////////////////
 /* define the welcome information */
 var welcome = {
   type: "html-keyboard-response",
-  stimulus: "Welcome to the experiment. Press any key to begin."
+  stimulus: "Welcome to our experiment! Press any key to begin."
 };
+tl.push(welcome);
 
-// timeline.push({
-//   type: 'fullscreen',
-//   fullscreen_mode: true
-// });
+var instComp = {
+  type: "html-keyboard-response",
+  stimulus: "<p>Before we get started, we need to switch to fullscreen and measure the screen you are using.</p>" + 
+      "Navigating to the next page will automatically change your screen to fullscreen. Then we will ask for you to calibrate your screen." +
+      "<p>Press any key to begin.</p>",
+  post_trial_gap: 1000
+};
+tl.push(instComp);
 
+tl.push({
+  type: 'fullscreen',
+  fullscreen_mode: true
+});
 
-// var compSize = {
-//   type: 'resize',
-//   item_width: 3 + 3/8,
-//   item_height: 2 + 1/8,
-//   prompt: "<p>Click and drag the lower right corner of the box until the box is the same size as any credit card you have held up to the screen.</p>",
-//   pixels_per_unit: 150
-// };
-// timeline.push(compSize);
+var compSize = {
+  type: 'resize',
+  item_width: 3 + 3/8,
+  item_height: 2 + 1/8,
+  prompt: "<p>Click and drag the lower right corner of the box until the box is the same size as any credit card you have held up to the screen.</p>",
+  pixels_per_unit: 150
+};
+tl.push(compSize);
 
+/////////////////////////////////////////////////////
 /* define the stimuli */
 var test_stimuli = [
   { stimulus: "jsPsych/examples/img/Fidel Castro.png",  correct_response: 'f'},
@@ -48,8 +62,9 @@ var test_stimuli = [
 var instructions = {
   type: "html-keyboard-response",
   stimulus: "<p>You will now begin the experiment.</p>" + 
-      "In this experiment, you will be asked to do something <i>cool</i>. Here's a <b>smiling</> person:" + 
-      "<p><img src='jsPsych/examples/img/happy_face_1.jpg'; width='100px'; height='100px;'></img></p>" +
+      "We are interested in how people make decisions about different kinds of events." + 
+      "<p>You will be asked to read a number of stories and then make simple decisions about the stories.</p>" +
+      "<p>Please try to read carefully.</p>" +
       "<p style='position:fixed;bottom:0;width:50%;text-align:bottom'>Press any key to begin.</p>",
   post_trial_gap: 2000
 };
@@ -83,10 +98,23 @@ var test = {
   }
 }
 
+/////////////////////////////////////////////////////
 /* define survey information */
+// i think NFC
 
 var DSR1q = ["Strongly disagree", "Mildly disagree", "Neither agree nor disagree", "Mildly agree", "Strongly agree"];
-var DSR_b1 = {
+var Genderq = ["Male", "Female", "Non-binary", "Other"];
+var PolIDq = ["Extremely Liberal", " ", " ", " Neither", " ", " ", "Extremely Conservative"];
+var Relq = ["Not at all Religious", " ", " ", " ", " ", " ", "Extremely Religious"];
+var Incomeq = ["Less than $10,000 USD a year", "$10,000 - $20,000 USD", "$20,000-$40,000 USD", "$40,000-$60,000 USD", "$60,000-$80,000 USD", "$80,000-$100,000 USD", "$100,000 USD a year or more"];
+var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Hispanic or Latinx", "Two or more", "Not listed"];
+var Handedq = ["Right-handed", "Left-handed", "Both"];
+var Demand1q = ["Right-handed", "Left-handed", "Both"];
+var Demand2q = ["Right-handed", "Left-handed", "Both"];
+var compChangeq = ["I did not adjust my computer", "I adjusted my computer's brightness", "I adjusted the angle of my monitor/screen", "I adjusted both"];
+var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
+
+  var DSR_b1 = {
             type: 'survey-multi-choice',
             questions: [
                 {prompt: '<p style="text-align: left;font-size:20px;">A persons family is the most important thing in life.</p>', options: DSR1q, required: true, horizontal: true,}, 
@@ -108,6 +136,51 @@ var DSR_b1 = {
             preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you. Please write a number (0-4) to indicate your answer:'
             };
 
+  var demo_Age = {
+        type: 'survey-text',
+        questions: [
+        {prompt: 'How old are you?', columns: 3, required: true, name: 'Age'},
+        {prompt: 'What is your religious affiliation?', columns: 50, name: 'Religious Affiliation'}
+        ],
+        randomize_question_order: true
+        };
+
+  var Demographics = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your Gender?</p>', options: page_1_options, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your Race?</p>', options: page_2_options, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">How religious would you consider yourself?</p>', options: page_3_options, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your household income?</p>', options: page_4_options, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">Which hand do you consider to be your dominant hand?</p>', options: page_5_options, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Which of the following best describes your vision?</p>', options: page_6_options, required: true, horizontal: true}        ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"Using the scales provided, please respond to each question about you as an individual.</p>'
+        };
+
+  var demo_PolIQ = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: page_1_options, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding social issues?</p>', options: page_2_options, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: page_3_options, required: true, horizontal: true,}
+        ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your political ideology.</p>'
+        };
+
+  var demo_FinalQs = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">What kind of device did you use to complete this study?</p>', options: page_1_options, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Did you adjust your computer in any way (its okay if you did! we just need to be able to account for it!)?</p>', options: page_2_options, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel pressure to respond in a particular way to any of the questions in order to appear a certain way?</p>', options: page_3_options, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">I felt as though I might be judged for my responses to the questions I answered.</p>', options: page_4_options, required: true, horizontal: true}        ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"For these final questions, please answer as honestly as you can! These will help us understand your results and will bare no influence on you!</p>'
+        };
+
+////////////////////////////////////////////////////////////////
 /* define the procedure & order */
 
 var task_procedure = {
@@ -117,18 +190,26 @@ var task_procedure = {
       randomize_order: true
     }
 
-tl.push(welcome);
 tl.push(instructions);
 tl.push(task_instructions);
 tl.push(task_procedure);
 tl.push(DSR_b1);
 
+////////////////////////////////////////////////////////////////
+///* define debrief */
+
+var debrief = {
+      type: "html-keyboard-response",
+      stimulus: "<p>Thank you for your participation!</p>" + 
+      "<p>Some things.",
+      post_trial_gap: 2000
+    };
+    tl.push(debrief);
+
+////////////////////////////////////////////////////////////////
 /* start the experiment */
 jsPsych.init({
-  timeline: tl,
-  on_finish: function() {
-    jsPsych.data.displayData(); //remove this when moving to collecting participant data
-  }
+  timeline: tl
 });
 </script>
 </html>
