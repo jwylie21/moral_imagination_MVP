@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My JsPsych Tutorial</title>
+    <script src="jsPsych/jspsych.js"></script>
+    <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+    <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css">
+  </head>
+  <body></body>
+  <script>
+
+/* create timeline */
+
+var tl = []; //timeline initialized empty
+
+/* define the welcome information */
+var welcome = {
+  type: "html-keyboard-response",
+  stimulus: "Welcome to the experiment. Press any key to begin."
+};
+
+// timeline.push({
+//   type: 'fullscreen',
+//   fullscreen_mode: true
+// });
+
+
+// var compSize = {
+//   type: 'resize',
+//   item_width: 3 + 3/8,
+//   item_height: 2 + 1/8,
+//   prompt: "<p>Click and drag the lower right corner of the box until the box is the same size as any credit card you have held up to the screen.</p>",
+//   pixels_per_unit: 150
+// };
+// timeline.push(compSize);
+
+/* define the stimuli */
+var test_stimuli = [
+  { stimulus: "jsPsych/examples/img/Fidel Castro.png",  correct_response: 'f'},
+  { stimulus: "jsPsych/examples/img/Larry Nassar.png",  correct_response: 'j'},
+  { stimulus: "jsPsych/examples/img/Vladimir Putin.png",  correct_response: 'j'}
+];
+
+/* define the trials */
+
+var instructions = {
+  type: "html-keyboard-response",
+  stimulus: "<p>You will now begin the experiment.</p>" + 
+      "In this experiment, you will be asked to do something <i>cool</i>. Here's a <b>smiling</> person:" + 
+      "<p><img src='jsPsych/examples/img/happy_face_1.jpg'; width='100px'; height='100px;'></img></p>" +
+      "<p style='position:fixed;bottom:0;width:50%;text-align:bottom'>Press any key to begin.</p>",
+  post_trial_gap: 2000
+};
+
+var fixation = {
+  type: 'html-keyboard-response',
+  stimulus: '<div style="font-size:60px;">+</div>',
+  choices: jsPsych.NO_KEYS,
+  trial_duration: function(){
+    return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500], 1)[0];
+ }
+//  data: {test_part: 'fixation'}
+}
+
+var task_instructions = {
+  type: "html-keyboard-response",
+  stimulus: "You will now begin the experiment.</p>" + 
+      "<p>When you see someone who's first name begins with an F, please press the F key.</p>" + 
+      "<p> When you see someone who's first name does not begin with an F, please press the J key.</p>" + 
+      "<p>Press any key to begin.</p>",
+  post_trial_gap: 1000
+};
+
+var test = {
+  type: "image-keyboard-response",
+  stimulus: jsPsych.timelineVariable('stimulus'),
+  choices: ['f', 'j'],
+  data: {
+    task: 'response',
+    correct_response: jsPsych.timelineVariable('correct_response')
+  }
+}
+
+/* define survey information */
+
+var DSR1q = ["Strongly disagree", "Mildly disagree", "Neither agree nor disagree", "Mildly agree", "Strongly agree"];
+var DSR_b1 = {
+            type: 'survey-multi-choice',
+            questions: [
+                {prompt: '<p style="text-align: left;font-size:20px;">A persons family is the most important thing in life.</p>', options: DSR1q, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">It would bother me to be in a science class, and to see a human hand preserved in a jar.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">It bothers me to hear someone clear a throat full of mucous.</p>', options: DSR1q, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">I never let any part of my body touch the toilet seat in public restrooms.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I would go out of my way to avoid walking through a graveyard.</p>', options: DSR1q, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">Seeing a cockroach in someone elses house doesnt bother me.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">It would bother me tremendously to touch a dead body.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">If I see someone vomit, it makes me sick to my stomach.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I probably would not go to my favorite restaurant if I found out that the cook had a cold.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">It would not upset me at all to watch a person with a glass eye take the eye out of the socket.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">It would bother me to see a rat run across my path in a park.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I would rather eat a piece of fruit than a piece of paper.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">Even if I was hungry, I would not drink a bowl of my favorite soup if it had been stirred by a used but thoroughly washed flyswatter.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">It would bother me to sleep in a nice hotel room if I knew that a man had died of a heart attack in that room the night before.</p>', options: DSR1q, required: true, horizontal: true}
+            ],
+            randomize_question_order: true,
+            preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you. Please write a number (0-4) to indicate your answer:'
+            };
+
+/* define the procedure & order */
+
+var task_procedure = {
+      timeline: [fixation, test],
+      timeline_variables: test_stimuli,
+      repetitions: 4,
+      randomize_order: true
+    }
+
+tl.push(welcome);
+tl.push(instructions);
+tl.push(task_instructions);
+tl.push(task_procedure);
+tl.push(DSR_b1);
+
+/* start the experiment */
+jsPsych.init({
+  timeline: tl,
+  on_finish: function() {
+    jsPsych.data.displayData(); //remove this when moving to collecting participant data
+  }
+});
+</script>
+</html>
