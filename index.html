@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My JsPsych Tutorial</title>
+    <title>P&C Paradigm</title>
     <script src="jsPsych/jspsych.js"></script>
     <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
@@ -33,43 +33,50 @@ var consent = {
 };
 tl.push(consent);
 
-var instComp = {
-  type: "html-keyboard-response",
-  stimulus: "<p>Before we get started, we need to switch to fullscreen and measure the screen you are using.</p>" + 
-      "Navigating to the next page will automatically change your screen to fullscreen. Then we will ask for you to calibrate your screen." +
-      "<p>Press any key to begin.</p>",
-  post_trial_gap: 1000
-};
-tl.push(instComp);
-
 tl.push({
   type: 'fullscreen',
+  message: '<div class="instructions"><p>Thank you for agreeing to participate.</p><p>Press the button below to begin in full screen mode.</p></div>',
   fullscreen_mode: true
 });
 
-var compSize = {
-  type: 'resize',
-  item_width: 3 + 3/8,
-  item_height: 2 + 1/8,
-  prompt: "<p>Click and drag the lower right corner of the box until the box is the same size as any credit card you have held up to the screen.</p>",
-  pixels_per_unit: 150
-};
-tl.push(compSize);
-
 /////////////////////////////////////////////////////
 /* define the SCENARIOS */
-var test_stimuli = [
-  { stimulus: "jsPsych/examples/img/Fidel Castro.png",  correct_response: 'f'},
-  { stimulus: "jsPsych/examples/img/Larry Nassar.png",  correct_response: 'j'},
-  { stimulus: "jsPsych/examples/img/Vladimir Putin.png",  correct_response: 'j'}
-];
+
+// var scenario_stimuli1 = [
+//   { stimulus: "Just a few weeks ago, I was going to the grocery store. I saw an elderly dog lying on its side and asked a clerk how long it had been lying there. It had been lying there all day."},
+//   { stimulus: "My daughter and I were shopping in a toy store at the mall. We found a wallet that had money and receipts in it."},
+//   { stimulus: "The day after I married my ex-husband, his previous girlfriend came to our house and dropped of their three-month-old son. We didn’t see her again for eleven years and I became wife and mom. The child was extremely undernourished and has ADHD."},
+//   { stimulus: "A few years ago my mom fell. She hurt herself badly."},
+//   { stimulus: "Three years ago I had a call from a friend of mine who was overseas. His nephew was coming over to the States to go to medical school near me."},
+//   { stimulus: "I was on the beach one day and saw a small dolphin roll up on the beach. I alerted the lifeguard and he said that it happened all the time and it would just die."},
+//   { stimulus: "I was friends with a woman who wanted to pursue her acting career. She was going to pawn this ring that was in her family for years. I didn’t want her to pawn the ring."},
+//   { stimulus: "I had a bad relationship with my father and had not talked to him for years. He had left my mother. When my mother died."},
+//   { stimulus: "My friends and I were going skiing over the Christmas holiday. On our way up we were in a car accident and a small child in another car was killed. I felt so sorry for the mother."},
+//   { stimulus: "I was at an office party and the company had decorated a room for a fancy dinner. At the end of the night my friend said that we could take the candles that were on the table. She didn’t know that we weren’t supposed to take the candles,"},
+//   { stimulus: "After my father became a widower I would try to do things for him. He would ask if I was doing okay"},
+//   { stimulus: "A few years ago, my baby was very ill. I had just brought home my newborn baby and with my cat, my baby was becoming progressively sicker. I really didn’t want to, but for the sake of my baby’s health,"}
+// ];
+
+var scenario_stimuli1 = ["Just a few weeks ago, I was going to the grocery store. I saw an elderly dog lying on its side and asked a clerk how long it had been lying there. It had been lying there all day."];
+var scenario_stimuli2 = ["My daughter and I were shopping in a toy store at the mall. We found a wallet that had money and receipts in it."];
+var scenario_stimuli3 = ["The day after I married my ex-husband, his previous girlfriend came to our house and dropped of their three-month-old son. We didn’t see her again for eleven years and I became wife and mom. The child was extremely undernourished and has ADHD."];
+var scenario_stimuli4 = ["A few years ago my mom fell. She hurt herself badly."];
+var scenario_stimuli5 = ["Three years ago I had a call from a friend of mine who was overseas. His nephew was coming over to the States to go to medical school near me."];
+var scenario_stimuli6 = ["I was on the beach one day and saw a small dolphin roll up on the beach. I alerted the lifeguard and he said that it happened all the time and it would just die."];
+var scenario_stimuli7 = ["I was friends with a woman who wanted to pursue her acting career. She was going to pawn this ring that was in her family for years. I didn’t want her to pawn the ring."];
+var scenario_stimuli8 = ["I had a bad relationship with my father and had not talked to him for years. He had left my mother. When my mother died."];
+var scenario_stimuli9 = ["My friends and I were going skiing over the Christmas holiday. On our way up we were in a car accident and a small child in another car was killed. I felt so sorry for the mother."];
+var scenario_stimuli510 = ["I was at an office party and the company had decorated a room for a fancy dinner. At the end of the night my friend said that we could take the candles that were on the table. She didn’t know that we weren’t supposed to take the candles"];
+var scenario_stimuli11 = ["After my father became a widower I would try to do things for him. He would ask if I was doing okay"];
+var scenario_stimuli12 = ["A few years ago, my baby was very ill. I had just brought home my newborn baby and with my cat, my baby was becoming progressively sicker. I really didn’t want to, but for the sake of my baby’s health,"];
 
 /* define the OPTIONS */
-var test_stimuli = [
-  { stimulus: "jsPsych/examples/img/Fidel Castro.png",  correct_response: 'f'},
-  { stimulus: "jsPsych/examples/img/Larry Nassar.png",  correct_response: 'j'},
-  { stimulus: "jsPsych/examples/img/Vladimir Putin.png",  correct_response: 'j'}
-];
+
+var option_stimuli1 = jsPsych.randomization.sampleWithoutReplacement([
+  { option: "Keep walking",  type: 'Ordinary',  correct_response: 'f'},
+  { option: "Rescue the dog and bring it home with you",   type: 'Saintly', correct_response: 'f'},
+  { option: "Turn back time, so that the dog was young again",   type: 'Impossible', correct_response: 'j'}
+]);
 
 
 /////////////////////////////////////////////////////
@@ -98,8 +105,9 @@ var fixation = {
 var gen_instructions = {
   type: "html-keyboard-response",
   stimulus: "You will now begin the experiment.</p>" + 
-      "<p>We'd like you to tell us whether it is true or false that something ought to be done.</p>" +
-      "<p>To indicate that it is true that something ought to be done, please press the [f] key; to indicate that it is false that something ought to be done, please press the [j] key.</p>" +
+      "<p>We'd like you to tell us whether different actions are possible or impossible responses to scenarios you will read about.</p>" +
+      "<p>You will have to make many of these decisions under time pressure.</p>" +
+      "<p>To indicate that it is true that something is possible, press the [f] key; to indicate that it is false that something is NOT possible, please press the [j] key.</p>" +
       "<p> To get you used to the task, you will first go through a warm-up phase.</p>" + 
       "<p>On these trials, press [f] if you see the word <b>true</b> and [j] if you see the word <b>false</b>.</p>" +
       "<p><b>***You will have to respond very quickly, so please pay attention!***</b></p>" + 
@@ -109,8 +117,8 @@ var gen_instructions = {
 
 var task_instructions = {
   type: "html-keyboard-response",
-  stimulus: "Great! In this part, you will read a story and then will be judging whether it is true or false that certain things ought to be done."+
-  "<p>***Please answer as quickly and accurately as you possibly can. You will only have about 1 second to respond to each event.***</p>"};
+  stimulus: "Great! In this part, you will read a story and then will be judging whether different actions are possible or impossible."+
+  "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>"};
 
 var read_instructions = {
   type: "html-keyboard-response",
@@ -118,16 +126,25 @@ var read_instructions = {
 
 var scen_instructions = {
   type: "html-keyboard-response",
-  stimulus: "Given the story you just read, please tell us whether it is true or false that Heinz ought to do the following things." +
+  stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to: ." +
   "<p> Press the SPACE BAR when you are ready to begin.</p>" +
-  "<p>*** Remember, this will go very quickly!***</p>"};
+  "<p>*** Remember, this will go very quickly!***</p>",
+  choices: " "
+};
+
+var scen1 = {
+  type: "html-keyboard-response",
+  stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to: ." +
+  "<p> Press the SPACE BAR when you are ready to begin.</p>",
+  choices: " "
+};
 
 var test = {
-  type: "image-keyboard-response",
-  stimulus: jsPsych.timelineVariable('stimulus'),
+  type: "html-keyboard-response",
+  stimulus: jsPsych.timelineVariable('option'),
   choices: ['f', 'j'],
   data: {
-    task: 'response',
+    test_part: 'response',
     correct_response: jsPsych.timelineVariable('correct_response')
   }
 }
