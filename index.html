@@ -80,7 +80,7 @@ var option_stimuli1 = jsPsych.randomization.sampleWithoutReplacement([
 
 
 /////////////////////////////////////////////////////
-/* define the trials */
+/* define the trial parts */
 
 var instructions = {
   type: "html-keyboard-response",
@@ -117,29 +117,34 @@ var gen_instructions = {
 
 var task_instructions = {
   type: "html-keyboard-response",
-  stimulus: "Great! In this part, you will read a story and then will be judging whether different actions are possible or impossible."+
+  stimulus: "Great! In this part, you will read a scenario and then will be judging whether different actions are possible or impossible."+
   "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>"};
+
+  /////////////////////////////////////////////////////
 
 var read_instructions = {
   type: "html-keyboard-response",
-  stimulus: "Please read the following story"};
+  stimulus: "Please read the following scenario. The scenario will be displayed for 5 seconds."};
 
 var scen_instructions = {
   type: "html-keyboard-response",
-  stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to: ." +
+  stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to do the following actions." +
   "<p> Press the SPACE BAR when you are ready to begin.</p>" +
   "<p>*** Remember, this will go very quickly!***</p>",
   choices: " "
 };
 
-var scen1 = {
+/////////////////////////////////////////////////////
+/* define the procedure parts */
+
+var scenario1 = {
   type: "html-keyboard-response",
-  stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to: ." +
-  "<p> Press the SPACE BAR when you are ready to begin.</p>",
-  choices: " "
+  stimulus: scenario_stimuli1,
+  choices: jsPsych.NO_KEYS,
+  trial_duration: 5000,
 };
 
-var test = {
+var test1 = {
   type: "html-keyboard-response",
   stimulus: jsPsych.timelineVariable('option'),
   choices: ['f', 'j'],
@@ -159,10 +164,7 @@ var PolIDq = ["Extremely Liberal", " ", " ", " Neither", " ", " ", "Extremely Co
 var Relq = ["Not at all Religious", " ", " ", " ", " ", " ", "Extremely Religious"];
 var Incomeq = ["Less than $10,000 USD a year", "$10,000 - $20,000 USD", "$20,000-$40,000 USD", "$40,000-$60,000 USD", "$60,000-$80,000 USD", "$80,000-$100,000 USD", "$100,000 USD a year or more"];
 var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Hispanic or Latinx", "Two or more", "Not listed"];
-var Handedq = ["Right-handed", "Left-handed", "Both"];
-var Demand1q = ["Right-handed", "Left-handed", "Both"];
-var Demand2q = ["Right-handed", "Left-handed", "Both"];
-var compChangeq = ["I did not adjust my computer", "I adjusted my computer's brightness", "I adjusted the angle of my monitor/screen", "I adjusted both"];
+var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
 var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
 
   var DSR_b1 = {
@@ -196,15 +198,14 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
         randomize_question_order: true
         };
 
-  var Demographics = {
+  var demo_gen = {
         type: 'survey-multi-choice',
         questions: [
-            {prompt: '<p style="text-align: left;font-size:20px;">What is your Gender?</p>', options: page_1_options, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">What is your Race?</p>', options: page_2_options, required: true, horizontal: true},
-            {prompt: '<p style="text-align: left;font-size:20px;">How religious would you consider yourself?</p>', options: page_3_options, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">What is your household income?</p>', options: page_4_options, required: true, horizontal: true},
-            {prompt: '<p style="text-align: left;font-size:20px;">Which hand do you consider to be your dominant hand?</p>', options: page_5_options, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">Which of the following best describes your vision?</p>', options: page_6_options, required: true, horizontal: true}        ],
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your Gender?</p>', options: Genderq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your Race?</p>', options: Raceq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">How religious would you consider yourself?</p>', options: Relq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your household income?</p>', options: Incomeq, required: true, horizontal: true}
+          ],
         randomize_question_order: true,
         preamble: '<p style="text-align: left;font-size:28px;"Using the scales provided, please respond to each question about you as an individual.</p>'
         };
@@ -212,9 +213,9 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
   var demo_PolIQ = {
         type: 'survey-multi-choice',
         questions: [
-            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: page_1_options, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding social issues?</p>', options: page_2_options, required: true, horizontal: true},
-            {prompt: '<p style="text-align: left;font-size:20px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: page_3_options, required: true, horizontal: true,}
+            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: PolIDq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding social issues?</p>', options: PolIDq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: PolIDq, required: true, horizontal: true,}
         ],
         randomize_question_order: true,
         preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your political ideology.</p>'
@@ -223,28 +224,32 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
   var demo_FinalQs = {
         type: 'survey-multi-choice',
         questions: [
-            {prompt: '<p style="text-align: left;font-size:20px;">What kind of device did you use to complete this study?</p>', options: page_1_options, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">Did you adjust your computer in any way (its okay if you did! we just need to be able to account for it!)?</p>', options: page_2_options, required: true, horizontal: true},
-            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel pressure to respond in a particular way to any of the questions in order to appear a certain way?</p>', options: page_3_options, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">I felt as though I might be judged for my responses to the questions I answered.</p>', options: page_4_options, required: true, horizontal: true}        ],
+            {prompt: '<p style="text-align: left;font-size:20px;">What kind of device did you use to complete this study?</p>', options: compTypeq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel pressure to respond in a particular way to any of the questions?</p>', options: Demand1q, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel as though you might be judged for your responses to the questions you answered.</p>', options: Demand1q, required: true, horizontal: true}        
+          ],
         randomize_question_order: true,
-        preamble: '<p style="text-align: left;font-size:28px;"For these final questions, please answer as honestly as you can! These will help us understand your results and will bare no influence on you!</p>'
+        preamble: '<p style="text-align: left;font-size:28px;"For these final questions, please answer as honestly as you can! The answers to these questions will not affect whether or not you receive credit/payment for participation!</p>'
         };
 
 ////////////////////////////////////////////////////////////////
 /* define the procedure & order */
 
 var task_procedure = {
-      timeline: [fixation, test],
-      timeline_variables: test_stimuli,
-      repetitions: 4,
+      timeline: [fixation, read_instructions, scenario1, scen_instructions, test1],
+      timeline_variables: option_stimuli1,
       randomize_order: true
     }
 
 tl.push(instructions);
 tl.push(task_instructions);
 tl.push(task_procedure);
+
 tl.push(DSR_b1);
+tl.push(demo_Age);
+tl.push(demo_gen);
+tl.push(demo_PolIQ);
+tl.push(demo_FinalQs);
 
 ////////////////////////////////////////////////////////////////
 ///* define debrief */
