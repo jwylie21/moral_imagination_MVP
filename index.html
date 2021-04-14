@@ -42,25 +42,17 @@ tl.push({
 
 /////////////////////////////////////////////////////
 /* define the SCENARIOS */
-var scenario_stimuli1 = ["Just a few weeks ago, I was going to the grocery store. I saw an elderly dog lying on its side and asked a clerk how long it had been lying there. It had been lying there all day."];
-var scenario_stimuli2 = ["My daughter and I were shopping in a toy store at the mall. We found a wallet that had money and receipts in it."];
-var scenario_stimuli3 = ["The day after I married my ex-husband, his previous girlfriend came to our house and dropped of their three-month-old son. We didn’t see her again for eleven years and I became wife and mom. The child was extremely undernourished and has ADHD."];
-var scenario_stimuli4 = ["A few years ago my mom fell. She hurt herself badly."];
-var scenario_stimuli5 = ["Three years ago I had a call from a friend of mine who was overseas. His nephew was coming over to the States to go to medical school near me."];
-var scenario_stimuli6 = ["I was on the beach one day and saw a small dolphin roll up on the beach. I alerted the lifeguard and he said that it happened all the time and it would just die."];
-var scenario_stimuli7 = ["I was friends with a woman who wanted to pursue her acting career. She was going to pawn this ring that was in her family for years. I didn’t want her to pawn the ring."];
-var scenario_stimuli8 = ["I had a bad relationship with my father and had not talked to him for years. He had left my mother. When my mother died."];
-var scenario_stimuli9 = ["My friends and I were going skiing over the Christmas holiday. On our way up we were in a car accident and a small child in another car was killed. I felt so sorry for the mother."];
-var scenario_stimuli10 = ["I was at an office party and the company had decorated a room for a fancy dinner. At the end of the night my friend said that we could take the candles that were on the table. She didn’t know that we weren’t supposed to take the candles"];
-var scenario_stimuli11 = ["After my father became a widower I would try to do things for him. He would ask if I was doing okay"];
-var scenario_stimuli12 = ["A few years ago, my baby was very ill. I had just brought home my newborn baby and with my cat, my baby was becoming progressively sicker. I really didn’t want to, but for the sake of my baby’s health,"];
-
-/* define the OPTIONS */
-var option_stimuli1 = jsPsych.randomization.sampleWithoutReplacement([
-  { option: "Keep walking",  type: 'Ordinary',  correct_response: 'f'},
-  { option: "Rescue the dog and bring it home with you",   type: 'Saintly', correct_response: 'f'},
-  { option: "Turn back time, so that the dog was young again",   type: 'Impossible', correct_response: 'j'}
-]);
+var scenario_stimuli1 = ["A person goes to a grocery store. They see an elderly dog lying on its side and ask a clerk how long it has been there. It has been lying there all day.  "];
+var scenario_stimuli2 = ["A person’s daughter and they are shopping in a toy store at the mall. They find a wallet that has money and receipts in it."];
+var scenario_stimuli3 = ["The day after a person marries their ex-husband, his previous girlfriend comes to their house and drops off their three-month old son. They didn’t see her again for eleven years and the person became wife and mom. The child was extremely undernourished and has ADHD."];
+var scenario_stimuli4 = ["A person’s mom falls and hurts herself badly."];
+var scenario_stimuli5 = ["A person gets a call from a friend who is overseas. His nephew is coming over to the States to go to medical school near them."];
+var scenario_stimuli6 = ["A person is on the beach one day and sees a small dolphin roll up on the beach. They alert the lifeguard and he says that it happens all the time and it will just die."];
+var scenario_stimuli7 = ["A person is friends with a woman who wants to pursue an acting career. She is going to pawn this ring that was in her family for years. They don’t want her to pawn the ring."];
+var scenario_stimuli8 = ["A person has a bad relationship with his father and has not talked to him for years. He had left their mother. Their mother dies."];
+var scenario_stimuli9 = ["A person’s friends and they are going skiing over the Christmas holiday. On their way up they were in a car accident and a small child in another is killed. They feel sorry for the mother."];
+var scenario_stimuli10 = ["A person is at an office party and the company has decorated a room for a fancy dinner. At the end of the night their friends say that they can take the candles that are on the table. She doesn’t know that they aren’t supposed to take the candles."];
+var scenario_stimuli11 = ["A person’s father becomes a widower and they try to do things for him. He would ask if they were doing okay."];
 
 /* Adding all the scenarios to an array, we will loop through this array*/
 /* TODO: Add in the remaining scenarios once the list is finalized*/
@@ -68,22 +60,24 @@ var scenarios = [scenario_stimuli1,scenario_stimuli2];
 
 /* define the OPTIONS */
 /* TODO: Add the remaining options once the list is finalized*/
+
 var options1 = jsPsych.randomization.shuffle([
-      { option: "Get it some water",  type: 'Ordinary',  correct_response: 'f'},
-      { option: "Look around for the owner",  type: 'Ordinary',  correct_response: 'f'},
-      { option: "Pet the dog",  type: 'Ordinary',  correct_response: 'f'},
-      { option: "Give the dog a treat",  type: 'Ordinary',  correct_response: 'f'},
-      { option: "Look for the dog's name tag",  type: 'Ordinary',  correct_response: 'f'},
-      { option: "Bring the dog home with you",   type: 'Saintly', correct_response: 'f'},
-      { option: "Give the dog a dog bed",   type: 'Saintly', correct_response: 'f'},
-      { option: "Start a search for the owner",   type: 'Saintly', correct_response: 'f'},
-      { option: "Hang lost dog photos all over",   type: 'Saintly', correct_response: 'f'},
-      { option: "Pay for a vet appointment",   type: 'Saintly', correct_response: 'f'},
-      { option: "Turn back time to the dog's younger days",   type: 'Impossible', correct_response: 'j'},
-      { option: "Clone the dog",   type: 'Impossible', correct_response: 'j'},
-      { option: "Give the dog eternal life",   type: 'Impossible', correct_response: 'j'},
-      { option: "Instruct the dog in mindfulness meditation",   type: 'Impossible', correct_response: 'j'},
-      { option: "Teach the dog to talk",   type: 'Impossible', correct_response: 'j'}])
+  { option: "Get it some water",  type: 'Ordinary',  correct_response: 'f'},
+  { option: "Look around for the owner",  type: 'Ordinary',  correct_response: 'f'},
+  { option: "Pet the dog",  type: 'Ordinary',  correct_response: 'f'},
+  { option: "Give the dog a treat",  type: 'Ordinary',  correct_response: 'f'},
+  { option: "Look at the dog's name tag",  type: 'Ordinary',  correct_response: 'f'},
+  { option: "Rescue the dog and bring it home with you",   type: 'Saintly', correct_response: 'f'},
+  { option: "Buy and give a dog a dog bed",   type: 'Saintly', correct_response: 'f'},
+  { option: "Start an extensive search for the owner",   type: 'Saintly', correct_response: 'f'},
+  { option: "Hang lost dog photos all over",   type: 'Saintly', correct_response: 'f'},
+  { option: "Pay for a vet appointment",   type: 'Saintly', correct_response: 'f'},
+  { option: "Turn back time, so that the dog was young again",   type: 'Impossible', correct_response: 'j'},
+  { option: "Clone the dog",   type: 'Impossible', correct_response: 'j'},
+  { option: "Give the dog eternal life",   type: 'Impossible', correct_response: 'j'},
+  { option: "Instruct the dog in mindfulness meditation",   type: 'Impossible', correct_response: 'j'},
+  { option: "Teach the dog to talk",   type: 'Impossible', correct_response: 'j'}
+]);
 
 var options2 = jsPsych.randomization.shuffle([
       { option: "Tell a worker about the wallet",  type: 'Ordinary',  correct_response: 'f'},
@@ -100,12 +94,63 @@ var options2 = jsPsych.randomization.shuffle([
       { option: "Use their &quot;sixth sense&quot;",   type: 'Impossible', correct_response: 'j'},
       { option: "Give the wallet sentience",   type: 'Impossible', correct_response: 'j'},
       { option: "Travel back in time",   type: 'Impossible', correct_response: 'j'},
-      { option: "Gain dog-like sniffing abilities",   type: 'Impossible', correct_response: 'j'}])
+      { option: "Gain dog-like sniffing abilities",   type: 'Impossible', correct_response: 'j'}]);
+
+var options3 = jsPsych.randomization.shuffle([
+      { option: "Talk to the child",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Feed the child",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Take the weight of the child",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Call the child's mom",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Read a story to the child",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Adopt the child",   type: 'Saintly', correct_response: 'f'},
+      { option: "Start a college fund",   type: 'Saintly', correct_response: 'f'},
+      { option: "Add the child to your will",   type: 'Saintly', correct_response: 'f'},
+      { option: "Adopt another child as well",   type: 'Saintly', correct_response: 'f'},
+      { option: "Abandon career to devote time to child",   type: 'Saintly', correct_response: 'f'},
+      { option: "Clone the child",   type: 'Impossible', correct_response: 'j'},
+      { option: "Cure the child's ADHD",   type: 'Impossible', correct_response: 'j'},
+      { option: "Travel to the future",   type: 'Impossible', correct_response: 'j'},
+      { option: "Create a magical supply of food",   type: 'Impossible', correct_response: 'j'},
+      { option: "Change the child's memories",   type: 'Impossible', correct_response: 'j'}]);
+
+var options4 = jsPsych.randomization.shuffle([
+      { option: "Sned a get well soon card",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Send her flowers",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Call her to check on her",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Visit her in the hospital",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Arrange for a nurse",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Pay for ther medical expenses",   type: 'Saintly', correct_response: 'f'},
+      { option: "Quit my job to care for her",   type: 'Saintly', correct_response: 'f'},
+      { option: "Bring her to live in their home",   type: 'Saintly', correct_response: 'f'},
+      { option: "Buy a new house for her",   type: 'Saintly', correct_response: 'f'},
+      { option: "Donate an organ to her",   type: 'Saintly', correct_response: 'f'},
+      { option: "Brew a potion to instantly heal her",   type: 'Impossible', correct_response: 'j'},
+      { option: "Cast a spell to fix her pain",   type: 'Impossible', correct_response: 'j'},
+      { option: "Travel to the future",   type: 'Impossible', correct_response: 'j'},
+      { option: "Build a conscious robot to aid her",   type: 'Impossible', correct_response: 'j'},
+      { option: "Give her an elixir that fixes her DNA",   type: 'Impossible', correct_response: 'j'}]);
+
+var options5 = jsPsych.randomization.shuffle([
+      { option: "Drive to the airport",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Take a few days off work",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Gave him their phone number",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Invite him for dinner",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Introduce him to their friends",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Buy a house for him",   type: 'Saintly', correct_response: 'f'},
+      { option: "Pay for med school for him",   type: 'Saintly', correct_response: 'f'},
+      { option: "Buy him a luxury car",   type: 'Saintly', correct_response: 'f'},
+      { option: "Send him a daily care package",   type: 'Saintly', correct_response: 'f'},
+      { option: "Hire him a tutor",   type: 'Saintly', correct_response: 'f'},
+      { option: "Make someone fall in love with him",   type: 'Impossible', correct_response: 'j'},
+      { option: "Give him superhuman intelligence",   type: 'Impossible', correct_response: 'j'},
+      { option: "Buy him a teleportation device",   type: 'Impossible', correct_response: 'j'},
+      { option: "Invent a VR surgery simulator",   type: 'Impossible', correct_response: 'j'},
+      { option: "Cast a knowledge spell on him",   type: 'Impossible', correct_response: 'j'}]);
 
 /* Add all options-arrays to yet another array */
 /* By doing this we have an ordered array containing all the scenarios, as well as an array containing all the options ordered like the scenarios*/
 /* TODO add in all the remaining options */
-var options = [options1, options2]
+var options = [options1, options2, options3, options4, options5]
 
 /* Creating a list of shuffled numbers, we will use this list to ensure scenarios and options are randomized in the same way*/
 /* Essentially, we will randomize this list and access our scenarios & options through this list */
