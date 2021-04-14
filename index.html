@@ -67,7 +67,7 @@ var scenario_stimuli6 = ["I was on the beach one day and saw a small dolphin rol
 var scenario_stimuli7 = ["I was friends with a woman who wanted to pursue her acting career. She was going to pawn this ring that was in her family for years. I didn’t want her to pawn the ring."];
 var scenario_stimuli8 = ["I had a bad relationship with my father and had not talked to him for years. He had left my mother. When my mother died."];
 var scenario_stimuli9 = ["My friends and I were going skiing over the Christmas holiday. On our way up we were in a car accident and a small child in another car was killed. I felt so sorry for the mother."];
-var scenario_stimuli510 = ["I was at an office party and the company had decorated a room for a fancy dinner. At the end of the night my friend said that we could take the candles that were on the table. She didn’t know that we weren’t supposed to take the candles"];
+var scenario_stimuli10 = ["I was at an office party and the company had decorated a room for a fancy dinner. At the end of the night my friend said that we could take the candles that were on the table. She didn’t know that we weren’t supposed to take the candles"];
 var scenario_stimuli11 = ["After my father became a widower I would try to do things for him. He would ask if I was doing okay"];
 var scenario_stimuli12 = ["A few years ago, my baby was very ill. I had just brought home my newborn baby and with my cat, my baby was becoming progressively sicker. I really didn’t want to, but for the sake of my baby’s health,"];
 
@@ -79,29 +79,84 @@ var option_stimuli1 = jsPsych.randomization.sampleWithoutReplacement([
   { option: "Turn back time, so that the dog was young again",   type: 'Impossible', correct_response: 'j'}
 ]);
 
+/* Adding all the scenarios to an array, we will loop through this array*/
+/* TODO: Add in the remaining scenarios once the list is finalized*/
+var scenarios = [scenario1,scenario2];
+
+
+/* define the OPTIONS */
+/* TODO: Add the remaining options once the list is finalized*/
+var options1 = jsPsych.randomization.shuffle([
+      { option: "Get it some water",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Look around for the owner",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Pet the dog",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Give the dog a treat",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Look for the dog's name tag",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Bring the dog home with you",   type: 'Saintly', correct_response: 'f'},
+      { option: "Give the dog a dog bed",   type: 'Saintly', correct_response: 'f'},
+      { option: "Start a search for the owner",   type: 'Saintly', correct_response: 'f'},
+      { option: "Hang lost dog photos all over",   type: 'Saintly', correct_response: 'f'},
+      { option: "Pay for a vet appointment",   type: 'Saintly', correct_response: 'f'},
+      { option: "Turn back time to the dog's younger days",   type: 'Impossible', correct_response: 'j'},
+      { option: "Clone the dog",   type: 'Impossible', correct_response: 'j'},
+      { option: "Give the dog eternal life",   type: 'Impossible', correct_response: 'j'},
+      { option: "Instruct the dog in mindfulness meditation",   type: 'Impossible', correct_response: 'j'},
+      { option: "Teach the dog to talk",   type: 'Impossible', correct_response: 'j'}])
+
+var options2 = jsPsych.randomization.shuffle([
+      { option: "Tell a worker about the wallet",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Look around for the owner",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Look through the receipts",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Look for the drivers license",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Figure out the wallet's brand",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Drive to the owner's house ",   type: 'Saintly', correct_response: 'f'},
+      { option: "Search each store in the mall",   type: 'Saintly', correct_response: 'f'},
+      { option: "Put $1000 into the wallet",   type: 'Saintly', correct_response: 'f'},
+      { option: "Start making overhead announcements",   type: 'Saintly', correct_response: 'f'},
+      { option: "Ask all passersby",   type: 'Saintly', correct_response: 'f'},
+      { option: "Use telekinsesis to return the wallet",   type: 'Impossible', correct_response: 'j'},
+      { option: "Use their &quot;sixth sense&quot;",   type: 'Impossible', correct_response: 'j'},
+      { option: "Give the wallet sentience",   type: 'Impossible', correct_response: 'j'},
+      { option: "Travel back in time",   type: 'Impossible', correct_response: 'j'},
+      { option: "Gain dog-like sniffing abilities",   type: 'Impossible', correct_response: 'j'}])
+
+/* Add all options-arrays to yet another array */
+/* By doing this we have an ordered array containing all the scenarios, as well as an array containing all the options ordered like the scenarios*/
+/* TODO add in all the remaining options */
+var options = [options1, options2]
+
+/* Creating a list of shuffled numbers, we will use this list to ensure scenarios and options are randomized in the same way*/
+/* Essentially, we will randomize this list and access our scenarios & options through this list */
+/* Note that this list should have the same length as the "scenarios" variable*/
+var shuffledList = jsPsych.randomization.shuffle([0,1])
+console.log('shuffledList: '+shuffledList)
 
 /////////////////////////////////////////////////////
-/* define the trial parts */
+/* define the procedure parts */
+/* I do these bits in the for loop hence I commented them out */
 
-var instructions = {
+/*
+var scenario1 = {
   type: "html-keyboard-response",
-  stimulus: "<p>You will now begin the experiment.</p>" + 
-      "We are interested in how people make decisions about different kinds of events." + 
-      "<p>You will be asked to read a number of stories and then make simple decisions about the stories.</p>" +
-      "<p>You will be asked to make these decisions very quickly.</p>" +
-      "<p style='position:fixed;bottom:0;width:50%;text-align:bottom'>Press any key to begin.</p>",
-  post_trial_gap: 2000
+  stimulus: scenario_stimuli1,
+  choices: jsPsych.NO_KEYS,
+  trial_duration: 5000,
 };
 
-var fixation = {
-  type: 'html-keyboard-response',
-  stimulus: '<div style="font-size:60px;">+</div>',
-  choices: jsPsych.NO_KEYS,
-  trial_duration: function(){
-    return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500], 1)[0];
- }
-//  data: {test_part: 'fixation'}
+var test1 = {
+  type: "html-keyboard-response",
+  stimulus: jsPsych.timelineVariable('option'),
+  choices: ['f', 'j'],
+  data: {
+    test_part: 'response',
+    correct_response: jsPsych.timelineVariable('correct_response')
+  }
 }
+*/
+
+/////////////////////////////////////////////////////
+/* define survey information */
+// havent added any individual diff measures yet
 
 var gen_instructions = {
   type: "html-keyboard-response",
@@ -236,21 +291,56 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
 ////////////////////////////////////////////////////////////////
 /* define the procedure & order */
 
-var task_procedure = {
-      timeline: [fixation, read_instructions, scenario1, scen_instructions, test1],
-      timeline_variables: option_stimuli1,
-      randomize_order: true
-    }
-
+////////////////////////////////////////////////////////////////
+/* define the procedure & order */
 tl.push(instructions);
 tl.push(task_instructions);
-tl.push(task_procedure);
+
+tl.push(fixation);
+tl.push(read_instructions)
+/* Looping through all the scenarios */
+    /* Because we are indexing scenarios through shuffled list, the order is randomized */
+    for (var i = 0; i < shuffledList.length; i++){
+            /* Show a random scenario */
+            var display_scenarios = {
+                type: "html-keyboard-response",
+                stimulus: scenarios[shuffledList[i]], //jsPsych.timelineVariable("stimulus"),
+                choices: jsPsych.NO_KEYS,
+                trial_duration: 5000
+            }
+            tl.push(display_scenarios);
+
+            /*Display the scenario instructions*/
+            tl.push(scen_instructions)
+            
+            /*Looping through the options */
+            /* Because we are indexing the options through shuffled list, the correct options per scenario are displayed */
+            
+            for (var j = 0; j < options[i].length; j++){
+                var display_options = {
+                    type: 'html-keyboard-response',
+                    prompt: "<p style='text-align:bottom'>Press f for impossible, press j for possible.</p>",
+                    choices: ['f','j'],
+                    post_trial_gap: 1000,
+                    stimulus: options[shuffledList[i]][j].option,
+                };
+                tl.push(display_options)
+            }
+            /* We probably want to display something in between scenarios to "reset" the block, we can put that here */
+
+        };
 
 tl.push(DSR_b1);
 tl.push(demo_Age);
 tl.push(demo_gen);
 tl.push(demo_PolIQ);
 tl.push(demo_FinalQs);
+
+// var task_procedure = {
+//       timeline: [fixation, read_instructions, scenario1, scen_instructions, test1],
+//       timeline_variables: option_stimuli1,
+//       randomize_order: true
+//     }
 
 ////////////////////////////////////////////////////////////////
 ///* define debrief */
