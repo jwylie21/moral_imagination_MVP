@@ -39,6 +39,12 @@ tl.push({
   message: '<div class="instructions"><p>Thank you for agreeing to participate.</p><p>Press the button below to begin in full screen mode.</p></div>',
   fullscreen_mode: true
 });
+    
+var fixation = {
+  type: 'html-keyboard-response',
+  stimulus: '<div class="rsvp">+</div>',
+  choices: jsPsych.NO_KEYS,
+  trial_duration: 2000}
 
 /////////////////////////////////////////////////////
 /* define the SCENARIOS */
