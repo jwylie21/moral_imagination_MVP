@@ -42,22 +42,6 @@ tl.push({
 
 /////////////////////////////////////////////////////
 /* define the SCENARIOS */
-
-// var scenario_stimuli1 = [
-//   { stimulus: "Just a few weeks ago, I was going to the grocery store. I saw an elderly dog lying on its side and asked a clerk how long it had been lying there. It had been lying there all day."},
-//   { stimulus: "My daughter and I were shopping in a toy store at the mall. We found a wallet that had money and receipts in it."},
-//   { stimulus: "The day after I married my ex-husband, his previous girlfriend came to our house and dropped of their three-month-old son. We didn’t see her again for eleven years and I became wife and mom. The child was extremely undernourished and has ADHD."},
-//   { stimulus: "A few years ago my mom fell. She hurt herself badly."},
-//   { stimulus: "Three years ago I had a call from a friend of mine who was overseas. His nephew was coming over to the States to go to medical school near me."},
-//   { stimulus: "I was on the beach one day and saw a small dolphin roll up on the beach. I alerted the lifeguard and he said that it happened all the time and it would just die."},
-//   { stimulus: "I was friends with a woman who wanted to pursue her acting career. She was going to pawn this ring that was in her family for years. I didn’t want her to pawn the ring."},
-//   { stimulus: "I had a bad relationship with my father and had not talked to him for years. He had left my mother. When my mother died."},
-//   { stimulus: "My friends and I were going skiing over the Christmas holiday. On our way up we were in a car accident and a small child in another car was killed. I felt so sorry for the mother."},
-//   { stimulus: "I was at an office party and the company had decorated a room for a fancy dinner. At the end of the night my friend said that we could take the candles that were on the table. She didn’t know that we weren’t supposed to take the candles,"},
-//   { stimulus: "After my father became a widower I would try to do things for him. He would ask if I was doing okay"},
-//   { stimulus: "A few years ago, my baby was very ill. I had just brought home my newborn baby and with my cat, my baby was becoming progressively sicker. I really didn’t want to, but for the sake of my baby’s health,"}
-// ];
-
 var scenario_stimuli1 = ["Just a few weeks ago, I was going to the grocery store. I saw an elderly dog lying on its side and asked a clerk how long it had been lying there. It had been lying there all day."];
 var scenario_stimuli2 = ["My daughter and I were shopping in a toy store at the mall. We found a wallet that had money and receipts in it."];
 var scenario_stimuli3 = ["The day after I married my ex-husband, his previous girlfriend came to our house and dropped of their three-month-old son. We didn’t see her again for eleven years and I became wife and mom. The child was extremely undernourished and has ADHD."];
@@ -72,7 +56,6 @@ var scenario_stimuli11 = ["After my father became a widower I would try to do th
 var scenario_stimuli12 = ["A few years ago, my baby was very ill. I had just brought home my newborn baby and with my cat, my baby was becoming progressively sicker. I really didn’t want to, but for the sake of my baby’s health,"];
 
 /* define the OPTIONS */
-
 var option_stimuli1 = jsPsych.randomization.sampleWithoutReplacement([
   { option: "Keep walking",  type: 'Ordinary',  correct_response: 'f'},
   { option: "Rescue the dog and bring it home with you",   type: 'Saintly', correct_response: 'f'},
@@ -82,7 +65,6 @@ var option_stimuli1 = jsPsych.randomization.sampleWithoutReplacement([
 /* Adding all the scenarios to an array, we will loop through this array*/
 /* TODO: Add in the remaining scenarios once the list is finalized*/
 var scenarios = [scenario1,scenario2];
-
 
 /* define the OPTIONS */
 /* TODO: Add the remaining options once the list is finalized*/
@@ -132,31 +114,7 @@ var shuffledList = jsPsych.randomization.shuffle([0,1])
 console.log('shuffledList: '+shuffledList)
 
 /////////////////////////////////////////////////////
-/* define the procedure parts */
-/* I do these bits in the for loop hence I commented them out */
-
-/*
-var scenario1 = {
-  type: "html-keyboard-response",
-  stimulus: scenario_stimuli1,
-  choices: jsPsych.NO_KEYS,
-  trial_duration: 5000,
-};
-
-var test1 = {
-  type: "html-keyboard-response",
-  stimulus: jsPsych.timelineVariable('option'),
-  choices: ['f', 'j'],
-  data: {
-    test_part: 'response',
-    correct_response: jsPsych.timelineVariable('correct_response')
-  }
-}
-*/
-
-/////////////////////////////////////////////////////
-/* define survey information */
-// havent added any individual diff measures yet
+/* define instruction information */
 
 var gen_instructions = {
   type: "html-keyboard-response",
@@ -170,18 +128,13 @@ var gen_instructions = {
       "<p>Press any key to begin.</p>",
   post_trial_gap: 1000
 };
-
 var task_instructions = {
   type: "html-keyboard-response",
   stimulus: "Great! In this part, you will read a scenario and then will be judging whether different actions are possible or impossible."+
   "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>"};
-
-  /////////////////////////////////////////////////////
-
 var read_instructions = {
   type: "html-keyboard-response",
   stimulus: "Please read the following scenario. The scenario will be displayed for 5 seconds."};
-
 var scen_instructions = {
   type: "html-keyboard-response",
   stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to do the following actions." +
@@ -189,7 +142,12 @@ var scen_instructions = {
   "<p>*** Remember, this will go very quickly!***</p>",
   choices: " "
 };
-
+var interim_block = {
+  type: "html-keyboard-response",
+  stimulus: "Great! You have completed a trial." +
+  "<p> Press the SPACE BAR to begin the next trial.</p>",
+  choices: " "
+};
 /////////////////////////////////////////////////////
 /* define the procedure parts */
 
@@ -288,8 +246,6 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
         preamble: '<p style="text-align: left;font-size:28px;"For these final questions, please answer as honestly as you can! The answers to these questions will not affect whether or not you receive credit/payment for participation!</p>'
         };
 
-////////////////////////////////////////////////////////////////
-/* define the procedure & order */
 
 ////////////////////////////////////////////////////////////////
 /* define the procedure & order */
@@ -323,11 +279,12 @@ tl.push(read_instructions)
                     choices: ['f','j'],
                     post_trial_gap: 1000,
                     stimulus: options[shuffledList[i]][j].option,
+                    data: {test_part: 'response', correct_response: jsPsych.timelineVariable('correct_response')}
                 };
                 tl.push(display_options)
             }
             /* We probably want to display something in between scenarios to "reset" the block, we can put that here */
-
+            tl.push(interim_block)
         };
 
 tl.push(DSR_b1);
@@ -335,12 +292,6 @@ tl.push(demo_Age);
 tl.push(demo_gen);
 tl.push(demo_PolIQ);
 tl.push(demo_FinalQs);
-
-// var task_procedure = {
-//       timeline: [fixation, read_instructions, scenario1, scen_instructions, test1],
-//       timeline_variables: option_stimuli1,
-//       randomize_order: true
-//     }
 
 ////////////////////////////////////////////////////////////////
 ///* define debrief */
