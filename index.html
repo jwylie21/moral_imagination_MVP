@@ -280,8 +280,9 @@ var gen_instructions = {
       "On these trials, press [f] if you see the word <b>true</b> and [j] if you see the word <b>false</b>." +
       "<p><b>***You will have to respond very quickly, so please pay attention!***</b></p>" + 
       "<p>Press any key to begin.</p>",
-  post_trial_gap: 1000
-};
+  choices: jsPsych.ANY_KEYS
+  };
+
 var task_instructions = {
   type: "html-keyboard-response",
   stimulus: "Great! In this part, you will read a scenario and then will be judging whether different actions are possible or impossible."+
@@ -292,7 +293,8 @@ var task_instructions = {
 var read_instructions = {
   type: "html-keyboard-response",
   stimulus: "Please read the following scenario. The scenario will be displayed for 5 seconds."+
-  "<p>Press any key to continue.</p>"
+  "<p>Press any key to continue.</p>",
+  choices: jsPsych.ANY_KEYS
 };
 
 var scen_instructions = {
