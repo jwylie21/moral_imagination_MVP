@@ -319,6 +319,8 @@ var interim_block = {
 // havent added any individual diff measures yet
 
 var NFCq = ["Extremely uncharacteristic", "Somewhat uncharacteristic", "Uncertain", "Somewhat characteristic", "Extremely characteristic"];
+var TAq = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
+var CCq = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
 var Genderq = ["Male", "Female", "Non-binary", "Other"];
 var PolIDq = ["Extremely Liberal", " ", " ", " Neither", " ", " ", "Extremely Conservative"];
 var Relq = ["Not at all Religious", " ", " ", " ", " ", " ", "Extremely Religious"];
@@ -327,7 +329,7 @@ var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asia
 var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
 var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
 
-  var NFC = {
+var NFC = {
             type: 'survey-multi-choice',
             questions: [
                 {prompt: '<p style="text-align: left;font-size:20px;">I would prefer complex to simple problems.</p>', options: NFCq, required: true, horizontal: true,}, 
@@ -353,7 +355,40 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
             preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you. Please write a number (0-4) to indicate your answer:'
             };
 
-  var demo_Age = {
+var TA = {
+            type: 'survey-multi-choice',
+            questions: [
+                {prompt: '<p style="text-align: left;font-size:20px;">I don’t tolerate ambiguous situations well.</p>', options: TAq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">I would rather avoid solving a problem that must be viewed from several different perspectives.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I try to avoid situations that are ambiguous.</p>', options: TAq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">I prefer familiar situations to new ones.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">Problems that cannot be considered from just one point of view are a little threatening.</p>', options: TAq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">I avoid situations that are too complicated for me to easily understand.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I am tolerant of ambiguous situations.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I enjoy tackling problems that are complex enough to be ambiguous.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I try to avoid problems that don’t seem to have only one “best” solution.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I generally prefer novelty over familiarity.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I dislike ambiguous situations.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I find it hard to make a choice when the outcome is uncertain.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I prefer a situation in which there is some ambiguity.</p>', options: TAq, required: true, horizontal: true}
+            ],
+            randomize_question_order: true,
+            preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you. Please write a number (0-4) to indicate your answer:'
+            };
+
+var CC = {
+            type: 'survey-multi-choice',
+            questions: [
+                {prompt: '<p style="text-align: left;font-size:20px;">I find effective solutions by combining multiple ideas.</p>', options: CCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">While working on something, I try to generate as many ideas as possible.</p>', options: CCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I try to act out potential solutions to explore their effectiveness.</p>', options: CCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">If I get stuck on a problem, I try to take a different perspective of the situation.</p>', options: CCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">Incorporating previous solutions in new ways leads to good ideas.</p>', options: CCq, required: true, horizontal: true,}            ],
+            randomize_question_order: true,
+            preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you. Please write a number (0-4) to indicate your answer:'
+            };
+
+var demo_Age = {
         type: 'survey-text',
         questions: [
         {prompt: 'How old are you?', columns: 3, required: true, name: 'Age'},
@@ -362,7 +397,7 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
         randomize_question_order: true
         };
 
-  var demo_gen = {
+var demo_gen = {
         type: 'survey-multi-choice',
         questions: [
             {prompt: '<p style="text-align: left;font-size:20px;">What is your Gender?</p>', options: Genderq, required: true, horizontal: true,}, 
@@ -374,7 +409,7 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
         preamble: '<p style="text-align: left;font-size:28px;"Using the scales provided, please respond to each question about you as an individual.</p>'
         };
 
-  var demo_PolIQ = {
+var demo_PolIQ = {
         type: 'survey-multi-choice',
         questions: [
             {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: PolIDq, required: true, horizontal: true,}, 
@@ -385,7 +420,7 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
         preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your political ideology.</p>'
         };
 
-  var demo_FinalQs = {
+var demo_FinalQs = {
         type: 'survey-multi-choice',
         questions: [
             {prompt: '<p style="text-align: left;font-size:20px;">What kind of device did you use to complete this study?</p>', options: compTypeq, required: true, horizontal: true,}, 
@@ -438,6 +473,8 @@ tl.push(read_instructions);
         };
 
 tl.push(NFC);
+tl.push(TA);
+tl.push(CC);
 tl.push(demo_Age);
 tl.push(demo_gen);
 tl.push(demo_PolIQ);
