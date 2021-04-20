@@ -334,7 +334,7 @@ var test1 = {
 /* define survey information */
 // havent added any individual diff measures yet
 
-var DSR1q = ["Strongly disagree", "Mildly disagree", "Neither agree nor disagree", "Mildly agree", "Strongly agree"];
+var NFCq = ["Extremely uncharacteristic", "Somewhat uncharacteristic", "Uncertain", "Somewhat characteristic", "Extremely characteristic"];
 var Genderq = ["Male", "Female", "Non-binary", "Other"];
 var PolIDq = ["Extremely Liberal", " ", " ", " Neither", " ", " ", "Extremely Conservative"];
 var Relq = ["Not at all Religious", " ", " ", " ", " ", " ", "Extremely Religious"];
@@ -343,23 +343,27 @@ var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asia
 var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
 var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
 
-  var DSR_b1 = {
+  var NFC = {
             type: 'survey-multi-choice',
             questions: [
-                {prompt: '<p style="text-align: left;font-size:20px;">A persons family is the most important thing in life.</p>', options: DSR1q, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">It would bother me to be in a science class, and to see a human hand preserved in a jar.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">It bothers me to hear someone clear a throat full of mucous.</p>', options: DSR1q, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">I never let any part of my body touch the toilet seat in public restrooms.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I would go out of my way to avoid walking through a graveyard.</p>', options: DSR1q, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">Seeing a cockroach in someone elses house doesnt bother me.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">It would bother me tremendously to touch a dead body.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">If I see someone vomit, it makes me sick to my stomach.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I probably would not go to my favorite restaurant if I found out that the cook had a cold.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">It would not upset me at all to watch a person with a glass eye take the eye out of the socket.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">It would bother me to see a rat run across my path in a park.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I would rather eat a piece of fruit than a piece of paper.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">Even if I was hungry, I would not drink a bowl of my favorite soup if it had been stirred by a used but thoroughly washed flyswatter.</p>', options: DSR1q, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">It would bother me to sleep in a nice hotel room if I knew that a man had died of a heart attack in that room the night before.</p>', options: DSR1q, required: true, horizontal: true}
+                {prompt: '<p style="text-align: left;font-size:20px;">I would prefer complex to simple problems.</p>', options: NFCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">I like to have the responsibility of handling a situation that requires a lot of thinking.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">Thinking is not my idea of fun.</p>', options: NFCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">I would rather do something that requires little thought than something that is sure to challenge my thinking abilities.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I try to anticipate and avoid situations where there is a likely chance I will have to think in depth about something.</p>', options: NFCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:20px;">I find satisfaction in deliberating hard and for long hours.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I only think as hard as 1 have to.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I prefer to think about small, daily projects to long-term ones.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I like tasks that require little thought once Ive learned them.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">The idea of relying on thought to make my way to the top appeals to me.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I really enjoy a task that involves coming up with new solutions to problems.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">Learning new ways to think doesnt excite me very much. </p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I prefer my life to be filled with puzzles that I must solve.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">The notion of thinking abstractly is appealing to me.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I would prefer a task that is intellectual, difficult, and important to one that is somewhat important but does not require much thought.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">1 feel relief rather than satisfaction after completing a task that required a lot of mental effort.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">Its enough for me that something gets the job done. I dont care how or why it works.</p>', options: DSR1q, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I usually end up deliberating about issues even when they do not affect me personally.</p>', options: DSR1q, required: true, horizontal: true}
             ],
             randomize_question_order: true,
             preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you. Please write a number (0-4) to indicate your answer:'
@@ -449,7 +453,7 @@ tl.push(read_instructions)
             tl.push(interim_block)
         };
 
-//tl.push(DSR_b1);
+tl.push(NFC);
 tl.push(demo_Age);
 tl.push(demo_gen);
 tl.push(demo_PolIQ);
