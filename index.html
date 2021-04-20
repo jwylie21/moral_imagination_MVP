@@ -280,35 +280,34 @@ var gen_instructions = {
       "On these trials, press [f] if you see the word <b>true</b> and [j] if you see the word <b>false</b>." +
       "<p><b>***You will have to respond very quickly, so please pay attention!***</b></p>" + 
       "<p>Press any key to begin.</p>",
-  choices: " ",
   post_trial_gap: 1000
 };
 var task_instructions = {
   type: "html-keyboard-response",
   stimulus: "Great! In this part, you will read a scenario and then will be judging whether different actions are possible or impossible."+
-  "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>",
-  choices: " "
-};
+  "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>"+
+  "<p>Press any key to continue.</p>"
+  };
 
 var read_instructions = {
   type: "html-keyboard-response",
-  stimulus: "Please read the following scenario. The scenario will be displayed for 5 seconds.",
-  choices: " "
+  stimulus: "Please read the following scenario. The scenario will be displayed for 5 seconds."+
+  "<p>Press any key to continue.</p>"
 };
 
 var scen_instructions = {
   type: "html-keyboard-response",
   stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to do the following actions." +
-  "<p> Press the SPACE BAR when you are ready to begin.</p>" +
+  "<p> Press the ENTER/RETURN when you are ready to begin.</p>" +
   "<p>*** Remember, this will go very quickly!***</p>",
-  choices: " "
+  choices: "Enter"
 };
 
 var interim_block = {
   type: "html-keyboard-response",
   stimulus: "Great! You have completed a trial." +
-  "<p> Press the SPACE BAR to begin the next trial.</p>",
-  choices: " "
+  "<p> Press the ENTER/RETURN to begin the next trial.</p>",
+  choices: "Enter"
 };
 /////////////////////////////////////////////////////
 /* define the procedure parts */
