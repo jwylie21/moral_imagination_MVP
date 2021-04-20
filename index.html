@@ -424,8 +424,9 @@ tl.push(read_instructions);
             for (var j = 0; j < options[i].length; j++){
                 var display_options = {
                     type: 'html-keyboard-response',
-                    prompt: "<p style='text-align:bottom'>Press f for impossible, press j for possible.</p>",
+                    prompt: "<p style='text-align:bottom'>Press <b>[f]</b> for impossible, press <b>[j]</b> for possible.</p>",
                     choices: ['f','j'],
+                    trial_duration: 1000,
                     post_trial_gap: 1000,
                     stimulus: options[shuffledList[i]][j].option,
                     data: {test_part: 'response', correct_response: jsPsych.timelineVariable('correct_response')}
