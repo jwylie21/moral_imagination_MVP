@@ -60,9 +60,23 @@ var scenario_stimuli9 = ["A person’s friends and they are going skiing over th
 var scenario_stimuli10 = ["A person is at an office party and the company has decorated a room for a fancy dinner. At the end of the night their friends say that they can take the candles that are on the table. She doesn’t know that they aren’t supposed to take the candles."];
 var scenario_stimuli11 = ["A person’s father becomes a widower and they try to do things for him. He would ask if they were doing okay."];
 
+var scenario_pract1 = ["True"];
+var scenario_pract2 = ["True"];
+var scenario_pract3 = ["True"];
+var scenario_pract4 = ["True"];
+var scenario_pract5 = ["True"];
+var scenario_pract6 = ["False"];
+var scenario_pract7 = ["False"];
+var scenario_pract8 = ["False"];
+var scenario_pract9 = ["False"];
+var scenario_pract10 = ["True"];
+
 /* Adding all the scenarios to an array, we will loop through this array*/
-/* TODO: Add in the remaining scenarios once the list is finalized*/
-var scenarios = [scenario_stimuli1,scenario_stimuli2];
+var practice = [scenario_pract1, scenario_pract2, scenario_pract3, scenario_pract4, scenario_pract5, 
+scenario_pract6, scenario_pract7, scenario_pract8, scenario_pract9, scenario_pract10]
+
+var scenarios = [scenario_stimuli1, scenario_stimuli2, scenario_stimuli3, scenario_stimuli4, scenario_stimuli5,
+scenario_stimuli6, scenario_stimuli7, scenario_stimuli8, scenario_stimuli9, scenario_stimuli10, scenario_stimuli11];
 
 /* define the OPTIONS */
 /* TODO: Add the remaining options once the list is finalized*/
@@ -276,18 +290,25 @@ var gen_instructions = {
       "<p>We'd like you to tell us whether different actions are possible or impossible responses to scenarios you will read about.</p>" +
       "You will have to make many of these decisions under time pressure." +
       "To indicate that it is true that something is possible, press the <b>[f]</b> key; to indicate that it is false that something is NOT possible, please press the <b>[j]</b> key.</p>" +
-      "<p> To get you used to the task, you will first go through a warm-up phase.</p>" + 
-      "On these trials, press [f] if you see the word <b>true</b> and [j] if you see the word <b>false</b>." +
       "<p><b>***You will have to respond very quickly, so please pay attention!***</b></p>" + 
       "<p>Press any key to begin.</p>",
   choices: jsPsych.ANY_KEYS
   };
 
+var prac_instructions = {
+  type: "html-keyboard-response",
+  stimulus: "We will now begin the warm-up phase." +
+  "<p>On these trials, press [f] if you see the word 'true' and [j] if you see the word 'false'</p>"+
+  "<p>Press any key to continue.</p>", 
+  choices: jsPsych.ANY_KEYS
+  }; 
+
 var task_instructions = {
   type: "html-keyboard-response",
-  stimulus: "Great! In this part, you will read a scenario and then will be judging whether different actions are possible or impossible."+
+  stimulus: "Great! We will now being the main task. You will first see a scenario to read and then will be judging whether different actions are possible (f key) or impossible (j key)."+
   "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>"+
-  "<p>Press any key to continue.</p>"
+  "<p>Press any key to continue.</p>",
+  choices: jsPsych.ANY_KEYS
   };
 
 var read_instructions = {
@@ -311,25 +332,6 @@ var interim_block = {
   "<p> Press the ENTER/RETURN to begin the next trial.</p>",
   choices: "Enter"
 };
-/////////////////////////////////////////////////////
-/* define the procedure parts */
-
-var scenario1 = {
-  type: "html-keyboard-response",
-  stimulus: scenario_stimuli1,
-  choices: jsPsych.NO_KEYS,
-  trial_duration: 5000,
-};
-
-var test1 = {
-  type: "html-keyboard-response",
-  stimulus: jsPsych.timelineVariable('option'),
-  choices: ['f', 'j'],
-  data: {
-    test_part: 'response',
-    correct_response: jsPsych.timelineVariable('correct_response')
-  }
-}
 
 /////////////////////////////////////////////////////
 /* define survey information */
@@ -417,10 +419,9 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
 ////////////////////////////////////////////////////////////////
 /* define the procedure & order */
 tl.push(gen_instructions);
+tl.push(prac_instructions);
 tl.push(task_instructions);
-
-tl.push(fixation);
-tl.push(read_instructions)
+tl.push(read_instructions);
 /* Looping through all the scenarios */
     /* Because we are indexing scenarios through shuffled list, the order is randomized */
     for (var i = 0; i < shuffledList.length; i++){
