@@ -13,7 +13,7 @@
   <body></body>
   <script>
 
-///last changes made by Jordan on 4/13
+///last changes made by Jordan on 4/20
 ///////////////////////////////////////////////////////
 /* create timeline */
 
@@ -39,6 +39,12 @@ tl.push({
   message: '<div class="instructions"><p>Thank you for agreeing to participate.</p><p>Press the button below to begin in full screen mode.</p></div>',
   fullscreen_mode: true
 });
+    
+var fixation = {
+  type: 'html-keyboard-response',
+  stimulus: '<div class="rsvp">+</div>',
+  choices: jsPsych.NO_KEYS,
+  trial_duration: 2000}
 
 /////////////////////////////////////////////////////
 /* define the SCENARIOS */
@@ -147,10 +153,113 @@ var options5 = jsPsych.randomization.shuffle([
       { option: "Invent a VR surgery simulator",   type: 'Impossible', correct_response: 'j'},
       { option: "Cast a knowledge spell on him",   type: 'Impossible', correct_response: 'j'}]);
 
+var options6 = jsPsych.randomization.shuffle([
+      { option: "Sit with it to comfort it",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Take a photo for social media",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Fill a bucket with sea water",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Pray for it",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Make sure noone bothers it",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Arrange for a small helicopter",   type: 'Saintly', correct_response: 'f'},
+      { option: "Swim it into the sea alone",   type: 'Saintly', correct_response: 'f'},
+      { option: "Build a pool for it to live in",   type: 'Saintly', correct_response: 'f'},
+      { option: "Start a dolphin sanctuary",   type: 'Saintly', correct_response: 'f'},
+      { option: "Attend classses to learn about dolphin care",   type: 'Saintly', correct_response: 'f'},
+      { option: "Turn it into a dog",   type: 'Impossible', correct_response: 'j'},
+      { option: "Learn a dolphin language",   type: 'Impossible', correct_response: 'j'},
+      { option: "Become a dolphin",   type: 'Impossible', correct_response: 'j'},
+      { option: "Give it prosthetic legs",   type: 'Impossible', correct_response: 'j'},
+      { option: "Give it dolphin psychotherapy",   type: 'Impossible', correct_response: 'j'}]);
+
+var options7 = jsPsych.randomization.shuffle([
+      { option: "Tell her not to pawn it",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Gift her a book on acting",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Connect her with a theater friend",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Lend her some money",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Give her a pep talk",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Help her get many auditions",   type: 'Saintly', correct_response: 'f'},
+      { option: "Give her their credit card",   type: 'Saintly', correct_response: 'f'},
+      { option: "Invest in a movie",   type: 'Saintly', correct_response: 'f'},
+      { option: "Pawn their own valuables instead",   type: 'Saintly', correct_response: 'f'},
+      { option: "Pay for professional acting lessons",   type: 'Saintly', correct_response: 'f'},
+      { option: "Perform magic to get a role",   type: 'Impossible', correct_response: 'j'},
+      { option: "Magically recreate the ring",   type: 'Impossible', correct_response: 'j'},
+      { option: "Use psychic energy to win the lottery",   type: 'Impossible', correct_response: 'j'},
+      { option: "Instantly become a director overnight",   type: 'Impossible', correct_response: 'j'},
+      { option: "Copy a famous actor's brain chemistry",   type: 'Impossible', correct_response: 'j'}]);
+
+var options8 = jsPsych.randomization.shuffle([
+      { option: "Send him a short letter",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Send a text message",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Send over some flowersr",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Tell him they forgive him",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Make him a photo album",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Go to tell him I love him",   type: 'Saintly', correct_response: 'f'},
+      { option: "Pay for his flight",   type: 'Saintly', correct_response: 'f'},
+      { option: "Convince him to live with us",   type: 'Saintly', correct_response: 'f'},
+      { option: "Get him a companion dog",   type: 'Saintly', correct_response: 'f'},
+      { option: "Look for a new partner for him",   type: 'Saintly', correct_response: 'f'},
+      { option: "Turn back time",   type: 'Impossible', correct_response: 'j'},
+      { option: "Bring mom back from the death",   type: 'Impossible', correct_response: 'j'},
+      { option: "Do a seance",   type: 'Impossible', correct_response: 'j'},
+      { option: "Place him into an alternate timeline",   type: 'Impossible', correct_response: 'j'},
+      { option: "Clone mom to marry him",   type: 'Impossible', correct_response: 'j'}]);
+
+var options9 = jsPsych.randomization.shuffle([
+      { option: "Go to the funeral",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Sit with the mom",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Dial 911",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Keep in contact with her",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Send some flowers to her home",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Perform CPR on the child",   type: 'Saintly', correct_response: 'f'},
+      { option: "Free her with their bare hands",   type: 'Saintly', correct_response: 'f'},
+      { option: "Pay for all her expenses",   type: 'Saintly', correct_response: 'f'},
+      { option: "Set up a crowdfunding action",   type: 'Saintly', correct_response: 'f'},
+      { option: "Invite her to all your Christmasses",   type: 'Saintly', correct_response: 'f'},
+      { option: "Pray until the kid comes back to life",   type: 'Impossible', correct_response: 'j'},
+      { option: "Clone the kid",   type: 'Impossible', correct_response: 'j'},
+      { option: "Go back in time",   type: 'Impossible', correct_response: 'j'},
+      { option: "Reverse their age",   type: 'Impossible', correct_response: 'j'},
+      { option: "Create an alternate timeline",   type: 'Impossible', correct_response: 'j'}]);
+
+var options10 = jsPsych.randomization.shuffle([
+      { option: "Apologize",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Return them",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Send a sorry card",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Bring some new candles",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Pay for the candles",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Bring hundreds more candles",   type: 'Saintly', correct_response: 'f'},
+      { option: "Write a big check",   type: 'Saintly', correct_response: 'f'},
+      { option: "Go a month without salary",   type: 'Saintly', correct_response: 'f'},
+      { option: "Make some new candles",   type: 'Saintly', correct_response: 'f'},
+      { option: "Organize an entire new party",   type: 'Saintly', correct_response: 'f'},
+      { option: "Change matter to unburn the candles",   type: 'Impossible', correct_response: 'j'},
+      { option: "Turn back time",   type: 'Impossible', correct_response: 'j'},
+      { option: "Invent candles that don't melt instantly",   type: 'Impossible', correct_response: 'j'},
+      { option: "Guarentee profit by seeing the future",   type: 'Impossible', correct_response: 'j'},
+      { option: "Charm the candles with magic",   type: 'Impossible', correct_response: 'j'}]);
+
+var options11 = jsPsych.randomization.shuffle([
+      { option: "Tell him the truth",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Tell a white lie",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Make him laugh",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Cheer him up",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Tell him not to worry",  type: 'Ordinary',  correct_response: 'f'},
+      { option: "Find hima new girlfriend",   type: 'Saintly', correct_response: 'f'},
+      { option: "Change careers",   type: 'Saintly', correct_response: 'f'},
+      { option: "Get therapy",   type: 'Saintly', correct_response: 'f'},
+      { option: "Get him a grandchild",   type: 'Saintly', correct_response: 'f'},
+      { option: "Try to better their life",   type: 'Saintly', correct_response: 'f'},
+      { option: "Bring mom back to life",   type: 'Impossible', correct_response: 'j'},
+      { option: "Build a sentient mom robot",   type: 'Impossible', correct_response: 'j'},
+      { option: "Cast a weekly anti-loneliness spell",   type: 'Impossible', correct_response: 'j'},
+      { option: "Give him my own happiness",   type: 'Impossible', correct_response: 'j'},
+      { option: "Reverse aging every week",   type: 'Impossible', correct_response: 'j'}]);
+
 /* Add all options-arrays to yet another array */
 /* By doing this we have an ordered array containing all the scenarios, as well as an array containing all the options ordered like the scenarios*/
 /* TODO add in all the remaining options */
-var options = [options1, options2, options3, options4, options5]
+var options = [options1, options2, options3, options4, options5,
+options6, options7, options8, options9, options10, options11]
 
 /* Creating a list of shuffled numbers, we will use this list to ensure scenarios and options are randomized in the same way*/
 /* Essentially, we will randomize this list and access our scenarios & options through this list */
@@ -163,23 +272,30 @@ console.log('shuffledList: '+shuffledList)
 
 var gen_instructions = {
   type: "html-keyboard-response",
-  stimulus: "You will now begin the experiment.</p>" + 
+  stimulus: "<p>You will now begin the experiment.</p>" + 
       "<p>We'd like you to tell us whether different actions are possible or impossible responses to scenarios you will read about.</p>" +
-      "<p>You will have to make many of these decisions under time pressure.</p>" +
-      "<p>To indicate that it is true that something is possible, press the [f] key; to indicate that it is false that something is NOT possible, please press the [j] key.</p>" +
+      "You will have to make many of these decisions under time pressure." +
+      "To indicate that it is true that something is possible, press the <b>[f]</b> key; to indicate that it is false that something is NOT possible, please press the <b>[j]</b> key.</p>" +
       "<p> To get you used to the task, you will first go through a warm-up phase.</p>" + 
-      "<p>On these trials, press [f] if you see the word <b>true</b> and [j] if you see the word <b>false</b>.</p>" +
+      "On these trials, press [f] if you see the word <b>true</b> and [j] if you see the word <b>false</b>." +
       "<p><b>***You will have to respond very quickly, so please pay attention!***</b></p>" + 
       "<p>Press any key to begin.</p>",
+  choices: " ",
   post_trial_gap: 1000
 };
 var task_instructions = {
   type: "html-keyboard-response",
   stimulus: "Great! In this part, you will read a scenario and then will be judging whether different actions are possible or impossible."+
-  "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>"};
+  "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>",
+  choices: " "
+};
+
 var read_instructions = {
   type: "html-keyboard-response",
-  stimulus: "Please read the following scenario. The scenario will be displayed for 5 seconds."};
+  stimulus: "Please read the following scenario. The scenario will be displayed for 5 seconds.",
+  choices: " "
+};
+
 var scen_instructions = {
   type: "html-keyboard-response",
   stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to do the following actions." +
@@ -187,6 +303,7 @@ var scen_instructions = {
   "<p>*** Remember, this will go very quickly!***</p>",
   choices: " "
 };
+
 var interim_block = {
   type: "html-keyboard-response",
   stimulus: "Great! You have completed a trial." +
@@ -294,7 +411,7 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
 
 ////////////////////////////////////////////////////////////////
 /* define the procedure & order */
-tl.push(instructions);
+tl.push(gen_instructions);
 tl.push(task_instructions);
 
 tl.push(fixation);
@@ -332,7 +449,7 @@ tl.push(read_instructions)
             tl.push(interim_block)
         };
 
-tl.push(DSR_b1);
+//tl.push(DSR_b1);
 tl.push(demo_Age);
 tl.push(demo_gen);
 tl.push(demo_PolIQ);
