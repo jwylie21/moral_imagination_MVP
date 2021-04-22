@@ -8,6 +8,7 @@
     <script src="jsPsych/plugins/jspsych-fullscreen.js"></script>
     <script src="jsPsych/plugins/jspsych-instructions.js"></script>
     <script src="jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="jsPsych/plugins/jspsych-survey-text.js"></script>
     <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css">
   </head>
   <body></body>
@@ -59,16 +60,16 @@ var scenario_stimuli9 = ["A person’s friends and they are going skiing over th
 var scenario_stimuli10 = ["A person is at an office party and the company has decorated a room for a fancy dinner. At the end of the night their friends say that they can take the candles that are on the table. She doesn’t know that they aren’t supposed to take the candles."];
 var scenario_stimuli11 = ["A person’s father becomes a widower and they try to do things for him. He would ask if they were doing okay."];
 
-var scenario_pract1 = ["True"];
-var scenario_pract2 = ["True"];
-var scenario_pract3 = ["True"];
-var scenario_pract4 = ["True"];
-var scenario_pract5 = ["True"];
-var scenario_pract6 = ["False"];
-var scenario_pract7 = ["False"];
-var scenario_pract8 = ["False"];
-var scenario_pract9 = ["False"];
-var scenario_pract10 = ["True"];
+var scenario_pract1 = ["Possible"];
+var scenario_pract2 = ["Possible"];
+var scenario_pract3 = ["Possible"];
+var scenario_pract4 = ["Possible"];
+var scenario_pract5 = ["Possible"];
+var scenario_pract6 = ["Impossible"];
+var scenario_pract7 = ["Impossible"];
+var scenario_pract8 = ["Impossible"];
+var scenario_pract9 = ["Impossible"];
+var scenario_pract10 = ["Possible"];
 
 /* Adding all the scenarios to an array, we will loop through this array*/
 var practice = [scenario_pract1, scenario_pract2, scenario_pract3, scenario_pract4, scenario_pract5, 
@@ -250,6 +251,9 @@ var options11 = jsPsych.randomization.shuffle([
       { option: "Give him my own happiness",   type: 'Impossible', correct_response: 'j'},
       { option: "Reverse aging every week",   type: 'Impossible', correct_response: 'j'}]);
 
+var timepressure = jsPsych.randomization.sampleWithoutReplacement([0, 1], 1);
+console.log('timepressure: '+timepressure)
+
 /* Add all options-arrays to yet another array */
 /* By doing this we have an ordered array containing all the scenarios, as well as an array containing all the options ordered like the scenarios*/
 /* TODO add in all the remaining options */
@@ -264,22 +268,40 @@ console.log('shuffledList: '+shuffledList)
 
 /////////////////////////////////////////////////////
 /* define instruction information */
-
-var gen_instructions = {
+var gen_instructions_NOTIME = {
   type: "html-keyboard-response",
   stimulus: "<p>You will now begin the experiment.</p>" + 
-      "<p>We'd like you to tell us whether different actions are possible or impossible responses to scenarios you will read about.</p>" +
-      "You will have to make many of these decisions under time pressure." +
-      "To indicate that it is true that something is possible, press the <b>[f]</b> key; to indicate that it is false that something is NOT possible, please press the <b>[j]</b> key.</p>" +
-      "<p><b>***You will have to respond very quickly, so please pay attention!***</b></p>" + 
-      "<p>Press any key to begin.</p>",
+     "<p>The experiment consists of different blocks.</p>" +
+     "<p>In each block, you will first be confronted with a specific scenario and subsequently, with several possible responses to that scenario.</p>" +
+     "<p>We'd like you to tell us whether these different responses are either a possible or an impossible response to the situation described in the scenario.</p>" +
+     "<p>To indicate that something is possible, press the <b>[f]</b> key; to indicate that something is NOT possible, please press the <b>[j]</b> key.</p>" +
+     "<p><b>There is no timelimit for this task, so please carefully deliberate on the possibility of each response.</b></p>" +
+     "<p>***Please pay attention!***</p>" + 
+     "<p>Before starting the main experiment we will first start with a warm-up session.</p>" + 
+     "<p>Press any key to continue.</p>",
   choices: jsPsych.ANY_KEYS
   };
+
+
+var gen_instructions_TIME = {
+  type: "html-keyboard-response",
+  stimulus: "<p>You will now begin the experiment.</p>" + 
+     "<p>The experiment consists of different blocks.</p>" +
+     "<p>In each block, you will first be confronted with a specific scenario and subsequently, with several possible responses to that scenario.</p>" +
+     "<p>We'd like you to tell us whether these different responses are either a possible or an impossible response to the situation described in the scenario.</p>" +
+     "<p>To indicate that it is true that something is possible, press the <b>[f]</b> key; to indicate that something is NOT possible, please press the <b>[j]</b> key.</p>" +
+     "<p><b>You will have to make these decisions under time pressure and will have to respond very quickly </b>.</p>" +
+     "<p>***Please pay attention!***</p>" + 
+     "<p>Before starting the main experiment we will first start with a warm-up session.</p>" + 
+     "<p>Press any key to continue.</p>",
+  choices: jsPsych.ANY_KEYS
+  };
+
 
 var prac_instructions = {
   type: "html-keyboard-response",
   stimulus: "We will now begin the warm-up phase." +
-  "<p>On these trials, press [f] if you see the word 'true' and [j] if you see the word 'false'</p>"+
+  "<p>On these trials, press [f] if you see the word 'Possible' and [j] if you see the word 'Impossible'</p>"+
   "<p>Press any key to continue.</p>", 
   choices: jsPsych.ANY_KEYS
   }; 
@@ -287,7 +309,7 @@ var prac_instructions = {
 var task_instructions = {
   type: "html-keyboard-response",
   stimulus: "Great! We will now being the main task. You will first see a scenario to read and then will be judging whether different actions are possible (f key) or impossible (j key)."+
-  "<p>***Please answer as quickly and accurately as you possibly can. You will only have about <b>1 second</b> to respond to each event.***</p>"+
+  "<p>***Please answer as accurately as you possibly can.***</p>"+
   "<p>Press any key to continue.</p>",
   choices: jsPsych.ANY_KEYS
   };
@@ -302,16 +324,15 @@ var read_instructions = {
 var scen_instructions = {
   type: "html-keyboard-response",
   stimulus: "Given the scenario you just read, please tell us whether it is possible or impossible to do the following actions." +
-  "<p> Press the ENTER/RETURN when you are ready to begin.</p>" +
-  "<p>*** Remember, this will go very quickly!***</p>",
-  choices: ['Enter']
+  "<p> Press any key when you are ready to begin.</p>",
+  choices: jsPsych.ANY_KEYS
 };
 
 var interim_block = {
   type: "html-keyboard-response",
-  stimulus: "Great! You have completed a trial." +
-  "<p> Press the ENTER/RETURN to begin the next trial.</p>",
-  choices: ['Enter']
+  stimulus: "Great! You have completed a block." +
+  "<p> Press any key begin the next block.</p>",
+  choices: jsPsych.ANY_KEYS
 };
 
 /////////////////////////////////////////////////////
@@ -347,7 +368,7 @@ var NFC = {
                 {prompt: '<p style="text-align: left;font-size:20px;">I prefer my life to be filled with puzzles that I must solve.</p>', options: NFCq, required: true, horizontal: true},
                 {prompt: '<p style="text-align: left;font-size:20px;">The notion of thinking abstractly is appealing to me.</p>', options: NFCq, required: true, horizontal: true},
                 {prompt: '<p style="text-align: left;font-size:20px;">I would prefer a task that is intellectual, difficult, and important to one that is somewhat important but does not require much thought.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">1 feel relief rather than satisfaction after completing a task that required a lot of mental effort.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:20px;">I feel relief rather than satisfaction after completing a task that required a lot of mental effort.</p>', options: NFCq, required: true, horizontal: true},
                 {prompt: '<p style="text-align: left;font-size:20px;">Its enough for me that something gets the job done. I dont care how or why it works.</p>', options: NFCq, required: true, horizontal: true},
                 {prompt: '<p style="text-align: left;font-size:20px;">I usually end up deliberating about issues even when they do not affect me personally.</p>', options: NFCq, required: true, horizontal: true}
             ],
@@ -434,12 +455,50 @@ var demo_FinalQs = {
 
 ////////////////////////////////////////////////////////////////
 /* define the procedure & order */
-tl.push(gen_instructions);
+/* determine which instuctions to show based on the timepressure variable*/
+if (timepressure == 0){
+  tl.push(gen_instructions_NOTIME);
+}
+
+if (timepressure == 1){
+  tl.push(gen_instructions_TIME);
+}
+
 tl.push(prac_instructions);
+/* Running the warm-up trials */
+/* Again depending on timepressure */
+
+for (var i = 0; i < practice.length; i++){
+  /* Show a warm-up trial */
+  /* Which type depends on timepressure */
+  if (timepressure == 0){
+    var display_warmup = {
+                type: "html-keyboard-response",
+                prompt: "<p style='text-align:bottom'>Press <b>[f]</b> for possible, press <b>[j]</b> for impossible.</p>",
+                choices: ['f','j'],
+                stimulus: practice[i], //jsPsych.timelineVariable("stimulus"),
+                post_trial_gap: 1000,
+    }
+  }
+  if (timepressure == 1){
+    var display_warmup = {
+                type: "html-keyboard-response",
+                prompt: "<p style='text-align:bottom'>Press <b>[f]</b> for possible, press <b>[j]</b> for impossible.</p>",
+                choices: ['f','j'],
+                stimulus: practice[i], //jsPsych.timelineVariable("stimulus"),
+                trial_duration: 1500,
+                post_trial_gap: 1000,
+    }
+  } 
+  tl.push(display_warmup);
+}
+
+
 tl.push(task_instructions);
 tl.push(read_instructions);
 /* Looping through all the scenarios */
     /* Because we are indexing scenarios through shuffled list, the order is randomized */
+
     for (var i = 0; i < shuffledList.length; i++){
             /* Show a random scenario */
             var display_scenarios = {
@@ -455,21 +514,38 @@ tl.push(read_instructions);
             
             /*Looping through the options */
             /* Because we are indexing the options through shuffled list, the correct options per scenario are displayed */
-            
-            for (var j = 0; j < options[i].length; j++){
-                var display_options = {
-                    type: 'html-keyboard-response',
-                    prompt: "<p style='text-align:bottom'>Press <b>[f]</b> for impossible, press <b>[j]</b> for possible.</p>",
-                    choices: ['f','j'],
-                    trial_duration: 1000,
-                    post_trial_gap: 1000,
-                    stimulus: options[shuffledList[i]][j].option,
-                    data: {test_part: 'response', correct_response: jsPsych.timelineVariable('correct_response')}
-                };
-                tl.push(display_options)
+            /* Pick a version based on timepressure */
+            if (timepressure == 0){
+              for (var j = 0; j < options[i].length; j++){
+                  var display_options = {
+                      type: 'html-keyboard-response',
+                      prompt: "<p style='text-align:bottom'>Press <b>[f]</b> for possible, press <b>[j]</b> for impossible.</p>",
+                      choices: ['f','j'],
+                      post_trial_gap: 1000,
+                      stimulus: options[shuffledList[i]][j].option,
+                      data: {test_part: 'response', correct_response: jsPsych.timelineVariable('correct_response')}
+                  };
+                  tl.push(display_options)
+              }
+            }
+            if (timepressure == 1){
+              for (var j = 0; j < options[i].length; j++){
+                  var display_options = {
+                      type: 'html-keyboard-response',
+                      prompt: "<p style='text-align:bottom'>Press <b>[f]</b> for possible, press <b>[j]</b> for impossible.</p>",
+                      choices: ['f','j'],
+                      trial_duration: 1500,
+                      post_trial_gap: 1000,
+                      stimulus: options[shuffledList[i]][j].option,
+                      data: {test_part: 'response', correct_response: jsPsych.timelineVariable('correct_response')}
+                  };
+                  tl.push(display_options)
+              }
             }
             /* We probably want to display something in between scenarios to "reset" the block, we can put that here */
-            tl.push(interim_block)
+            if (i < shuffledList.length -1){
+              tl.push(interim_block)
+          }
         };
 
 tl.push(NFC);
