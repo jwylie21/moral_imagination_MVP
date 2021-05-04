@@ -337,7 +337,8 @@ var interim_block = {
 
 /////////////////////////////////////////////////////
 /* define survey information */
-// havent added any individual diff measures yet
+// option + command + arrow key in VSCode give you multiline edits
+
 
 var NFCq = ["Extremely uncharacteristic", "Somewhat uncharacteristic", "Uncertain", "Somewhat characteristic", "Extremely characteristic"];
 var TAq = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
@@ -353,59 +354,62 @@ var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
 var NFC = {
             type: 'survey-multi-choice',
             questions: [
-                {prompt: '<p style="text-align: left;font-size:20px;">I would prefer complex to simple problems.</p>', options: NFCq, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">I like to have the responsibility of handling a situation that requires a lot of thinking.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">Thinking is not my idea of fun.</p>', options: NFCq, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">I would rather do something that requires little thought than something that is sure to challenge my thinking abilities.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I try to anticipate and avoid situations where there is a likely chance I will have to think in depth about something.</p>', options: NFCq, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">I find satisfaction in deliberating hard and for long hours.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I only think as hard as one has to.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I prefer to think about small, daily projects to long-term ones.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I like tasks that require little thought once Ive learned them.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">The idea of relying on thought to make my way to the top appeals to me.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I really enjoy a task that involves coming up with new solutions to problems.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">Learning new ways to think doesnt excite me very much. </p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I prefer my life to be filled with puzzles that I must solve.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">The notion of thinking abstractly is appealing to me.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I would prefer a task that is intellectual, difficult, and important to one than is somewhat important but does not require much thought.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I feel relief rather than satisfaction after completing a task that required a lot of mental effort.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">Its enough for me that something gets the job done. I dont care how or why it works.</p>', options: NFCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I usually end up deliberating about issues even when they do not affect me personally.</p>', options: NFCq, required: true, horizontal: true}
+                {prompt: '<p style="text-align: left;font-size:18px;">I would prefer complex to simple problems.</p>', options: NFCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:18px;">I like to have the responsibility of handling a situation that requires a lot of thinking.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">Thinking is not my idea of fun.</p>', options: NFCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:18px;">I would rather do something that requires little thought than something that is sure to challenge my thinking abilities.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I try to anticipate and avoid situations where there is a likely chance I will have to think in depth about something.</p>', options: NFCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:18px;">I find satisfaction in deliberating hard and for long hours.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I only think as hard as one has to.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I prefer to think about small, daily projects to long-term ones.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I like tasks that require little thought once Ive learned them.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">The idea of relying on thought to make my way to the top appeals to me.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I really enjoy a task that involves coming up with new solutions to problems.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">Learning new ways to think doesnt excite me very much. </p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I prefer my life to be filled with puzzles that I must solve.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">The notion of thinking abstractly is appealing to me.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I would prefer a task that is intellectual, difficult, and important to one than is somewhat important but does not require much thought.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I feel relief rather than satisfaction after completing a task that required a lot of mental effort.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">Its enough for me that something gets the job done. I dont care how or why it works.</p>', options: NFCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I usually end up deliberating about issues even when they do not affect me personally.</p>', options: NFCq, required: true, horizontal: true}
             ],
             randomize_question_order: true,
-            preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you using the scale provided:'
+            preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you using the scale provided:',
+            scale_width: 500
             };
 
 var TA = {
             type: 'survey-multi-choice',
             questions: [
-                {prompt: '<p style="text-align: left;font-size:20px;">I don’t tolerate ambiguous situations well.</p>', options: TAq, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">I would rather avoid solving a problem that must be viewed from several different perspectives.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I try to avoid situations that are ambiguous.</p>', options: TAq, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">I prefer familiar situations to new ones.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">Problems that cannot be considered from just one point of view are a little threatening.</p>', options: TAq, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">I avoid situations that are too complicated for me to easily understand.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I am tolerant of ambiguous situations.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I enjoy tackling problems that are complex enough to be ambiguous.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I try to avoid problems that don’t seem to have only one “best” solution.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I generally prefer novelty over familiarity.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I dislike ambiguous situations.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I find it hard to make a choice when the outcome is uncertain.</p>', options: TAq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I prefer a situation in which there is some ambiguity.</p>', options: TAq, required: true, horizontal: true}
+                {prompt: '<p style="text-align: left;font-size:18px;">I don’t tolerate ambiguous situations well.</p>', options: TAq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:18px;">I would rather avoid solving a problem that must be viewed from several different perspectives.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I try to avoid situations that are ambiguous.</p>', options: TAq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:18px;">I prefer familiar situations to new ones.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">Problems that cannot be considered from just one point of view are a little threatening.</p>', options: TAq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:18px;">I avoid situations that are too complicated for me to easily understand.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I am tolerant of ambiguous situations.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I enjoy tackling problems that are complex enough to be ambiguous.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I try to avoid problems that don’t seem to have only one “best” solution.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I generally prefer novelty over familiarity.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I dislike ambiguous situations.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I find it hard to make a choice when the outcome is uncertain.</p>', options: TAq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I prefer a situation in which there is some ambiguity.</p>', options: TAq, required: true, horizontal: true}
             ],
             randomize_question_order: true,
+            scale_width: 500,
             preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you using the scale provided:'
             };
 
 var CC = {
             type: 'survey-multi-choice',
             questions: [
-                {prompt: '<p style="text-align: left;font-size:20px;">I find effective solutions by combining multiple ideas.</p>', options: CCq, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">While working on something, I try to generate as many ideas as possible.</p>', options: CCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">I try to act out potential solutions to explore their effectiveness.</p>', options: CCq, required: true, horizontal: true,}, 
-                {prompt: '<p style="text-align: left;font-size:20px;">If I get stuck on a problem, I try to take a different perspective of the situation.</p>', options: CCq, required: true, horizontal: true},
-                {prompt: '<p style="text-align: left;font-size:20px;">Incorporating previous solutions in new ways leads to good ideas.</p>', options: CCq, required: true, horizontal: true,}            ],
+                {prompt: '<p style="text-align: left;font-size:18px;">I find effective solutions by combining multiple ideas.</p>', options: CCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:18px;">While working on something, I try to generate as many ideas as possible.</p>', options: CCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">I try to act out potential solutions to explore their effectiveness.</p>', options: CCq, required: true, horizontal: true,}, 
+                {prompt: '<p style="text-align: left;font-size:18px;">If I get stuck on a problem, I try to take a different perspective of the situation.</p>', options: CCq, required: true, horizontal: true},
+                {prompt: '<p style="text-align: left;font-size:18px;">Incorporating previous solutions in new ways leads to good ideas.</p>', options: CCq, required: true, horizontal: true,}            ],
             randomize_question_order: true,
+            scale_width: 500,
             preamble: 'Please indicate how much you agree with each of the following statements, or how true it is about you using the scale provided:'
             };
 
@@ -421,34 +425,37 @@ var demo_Age = {
 var demo_gen = {
         type: 'survey-multi-choice',
         questions: [
-            {prompt: '<p style="text-align: left;font-size:20px;">What is your Gender?</p>', options: Genderq, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">Which of the following items BEST describes your ethnic or racial background?</p>', options: Raceq, required: true, horizontal: true},
-            {prompt: '<p style="text-align: left;font-size:20px;">How religious would you consider yourself?</p>', options: Relq, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">What is your household income?</p>', options: Incomeq, required: true, horizontal: true}
+            {prompt: '<p style="text-align: left;font-size:18px;">What is your Gender?</p>', options: Genderq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:18px;">Which of the following items BEST describes your ethnic or racial background?</p>', options: Raceq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:18px;">How religious would you consider yourself?</p>', options: Relq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:18px;">What is your household income?</p>', options: Incomeq, required: true, horizontal: true}
           ],
         randomize_question_order: true,
+        scale_width: 500,
         preamble: '<p style="text-align: left;font-size:28px;"Using the scales provided, please respond to each question about you as an individual.</p>'
         };
 
 var demo_PolIQ = {
         type: 'survey-multi-choice',
         questions: [
-            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: PolIDq, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding social issues?</p>', options: PolIDq, required: true, horizontal: true},
-            {prompt: '<p style="text-align: left;font-size:20px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: PolIDq, required: true, horizontal: true,}
+            {prompt: '<p style="text-align: left;font-size:18px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: PolIDq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:18px;">Which response best captures your political beliefs surrounding social issues?</p>', options: PolIDq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:18px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: PolIDq, required: true, horizontal: true,}
         ],
         randomize_question_order: true,
+        scale_width: 500,
         preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your political ideology.</p>'
         };
 
 var demo_FinalQs = {
         type: 'survey-multi-choice',
         questions: [
-            {prompt: '<p style="text-align: left;font-size:20px;">What kind of device did you use to complete this study?</p>', options: compTypeq, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel pressure to respond in a particular way to any of the questions?</p>', options: Demand1q, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel as though you might be judged for your responses to the questions you answered.</p>', options: Demand1q, required: true, horizontal: true}        
+            {prompt: '<p style="text-align: left;font-size:18px;">What kind of device did you use to complete this study?</p>', options: compTypeq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:18px;">Did you feel pressure to respond in a particular way to any of the questions?</p>', options: Demand1q, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:18px;">Did you feel as though you might be judged for your responses to the questions you answered.</p>', options: Demand1q, required: true, horizontal: true}        
           ],
         randomize_question_order: true,
+        scale_width: 500,
         preamble: '<p style="text-align: left;font-size:28px;"For these final questions, please answer as honestly as you can! The answers to these questions will not affect whether or not you receive credit/payment for participation!</p>'
         };
 
